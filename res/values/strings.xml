@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">DailyGoal</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_goal_add">GoalAddActivity</string>
+    <string name="today_to_do">today to do</string>
+    <string name="i_will_finish_it">I Will Finish It</string>
+
+</resources>
