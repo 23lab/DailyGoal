@@ -15,6 +15,7 @@ import android.os.RemoteException;
 import android.util.Log;
 import android.widget.Toast;
 
+
 public class NotifyingService extends Service {
 	private NotificationManager mNM;
 	private ConditionVariable mCondition;
