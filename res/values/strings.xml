@@ -11,5 +11,7 @@
     <string name="title_activity_home">HomeActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_archive">ArchiveActivity</string>
+    <string name="title_activity_settings">SettingsActivity</string>
 
 </resources>
