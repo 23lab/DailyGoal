@@ -29,6 +29,20 @@
             android:name="us.stupidx.dailygoal.GoalAddActivity"
             android:label="@string/title_activity_goal_add" >
         </activity>
+        <activity
+            android:name="us.stupidx.dailygoal.StartActivity"
+            android:label="@string/title_activity_start" >
+        </activity>
+        <activity
+            android:name="us.stupidx.dailygoal.SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
+        <activity
+            android:name="us.stupidx.dailygoal.HomeActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_home"
+            android:theme="@style/FullscreenTheme" >
+        </activity>
     </application>
 
 </manifest>
