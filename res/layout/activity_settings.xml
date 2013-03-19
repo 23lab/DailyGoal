@@ -15,7 +15,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true" >
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/button1" >
 
         <TableLayout
             android:id="@+id/TableLayout1"
@@ -33,12 +34,6 @@
 
             <TimePicker
                 android:id="@+id/morning_time"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <android.support.v7.widget.Space
-                android:id="@+id/space1"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1" />
@@ -64,7 +59,19 @@
                 android:layout_weight="1"
                 android:text="保存设置" />
         </TableLayout>
-
     </ScrollView>
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/scrollView1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:background="@android:color/transparent"
+        android:drawableLeft="@drawable/return_left"
+        android:text="返回主页"
+        android:textColor="#fff"
+        android:textSize="16dp" />
 
 </RelativeLayout>

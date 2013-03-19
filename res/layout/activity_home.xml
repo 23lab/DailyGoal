@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="39dp"
+        android:layout_marginTop="45dp"
         android:text="2013年3月18日"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -45,7 +45,7 @@
         android:layout_alignLeft="@+id/textView3"
         android:layout_below="@+id/textView3"
         android:layout_marginTop="32dp"
-        android:text="写完所有代码, 看完所有电影"
+        android:text="XXXXXXXXXX"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#f00" />
 
@@ -67,5 +67,21 @@
         android:layout_alignParentTop="true" >
 
     </android.gesture.GestureOverlayView>
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="Setting" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Button" />
 
 </RelativeLayout>

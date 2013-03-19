@@ -1,6 +1,7 @@
 package us.stupidx.dailygoal;
 
 import us.stupidx.config.Config;
+import us.stupidx.config.Direction;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,10 +21,12 @@ public class HomeActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 
-		SharedPreferences settings = this.getSharedPreferences(Config.PREFS_NAME, 0);
-		
-		Toast.makeText(this, settings.getString("morning_time", "moring_time"), Toast.LENGTH_LONG).show();
-		
+		SharedPreferences settings = this.getSharedPreferences(
+				Config.PREFS_NAME, 0);
+
+		Toast.makeText(this, settings.getString("morning_time", "moring_time"),
+				Toast.LENGTH_LONG).show();
+
 		GestureOverlayView gestures = (GestureOverlayView) findViewById(R.id.home_guesture_view);
 		gestures.setGestureVisible(false);
 		gestures.addOnGestureListener(new OnGestureListener() {
@@ -32,7 +35,7 @@ public class HomeActivity extends Activity {
 
 			@Override
 			public void onGesture(GestureOverlayView arg0, MotionEvent arg1) {
-				
+
 			}
 
 			@Override
@@ -46,8 +49,12 @@ public class HomeActivity extends Activity {
 				gestureEnd.x = (int) arg1.getX();
 				gestureEnd.y = (int) arg1.getY();
 
-				if (gestureEnd.x - gestureStart.x > validDragDistance) {
-					this.redirectTo(SettingsActivity.class);
+				if (gestureEnd.x - gestureStart.x > Config.VALID_DRAG_DISTANCE) {
+					this.redirectTo(ArchiveActivity.class, Direction.RIGHT);
+				} else if (gestureStart.x - gestureEnd.x > Config.VALID_DRAG_DISTANCE) {
+					this.redirectTo(SettingsActivity.class, Direction.LEFT);
+				} else if (gestureStart.y - gestureEnd.x > Config.VALID_DRAG_DISTANCE){
+					this.redirectTo(GoalAddActivity.class, Direction.UP);
 				}
 			}
 
@@ -63,10 +70,24 @@ public class HomeActivity extends Activity {
 				int subY = Math.abs(second.y - first.y);
 				return Math.sqrt(Math.pow(subX, 2) + Math.pow(subY, 2));
 			}
-			
-			private void redirectTo(Class<? extends Activity> c){
+
+			private void redirectTo(Class<? extends Activity> c, Direction d) {
+
 				Intent intent = new Intent(HomeActivity.this, c);
 				startActivity(intent);
+
+				if (Direction.UP.equals(d)) {
+
+				} else if (Direction.DOWN.equals(d)) {
+
+				} else if (Direction.LEFT.equals(d)) {
+					overridePendingTransition(R.anim.push_left_in,
+							R.anim.push_left_out);
+
+				} else if (Direction.RIGHT.equals(d)) {
+					overridePendingTransition(R.anim.push_right_in,
+							R.anim.push_right_out);
+				}
 			}
 		});
 	}

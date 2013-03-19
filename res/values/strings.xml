@@ -6,7 +6,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_goal_add">GoalAddActivity</string>
     <string name="today_to_do">today to do</string>
-    <string name="i_will_finish_it">I Will Finish It</string>
+    <string name="do_it">Do</string>
     <string name="title_activity_start">StartActivity</string>
     <string name="title_activity_home">HomeActivity</string>
     <string name="dummy_button">Dummy Button</string>
