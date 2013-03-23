@@ -13,6 +13,13 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        <provider
+            android:name="us.stupidx.dailygoal.GoalProvider"
+            android:authorities="com.google.provider.GoalProvider"
+            android:exported="false" >
+            <grant-uri-permission android:pathPattern=".*" />
+        </provider>
+
         <activity
             android:name="us.stupidx.dailygoal.DgActivity"
             android:label="@string/app_name" >
@@ -22,7 +29,8 @@
 
         <activity
             android:name="us.stupidx.dailygoal.GoalAddActivity"
-            android:label="@string/title_activity_goal_add" android:screenOrientation="portrait"
+            android:label="@string/title_activity_goal_add"
+            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
         <activity

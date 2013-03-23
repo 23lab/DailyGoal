@@ -6,7 +6,5 @@ public final class Config {
 
 	// DB Config
 	public static final String DB_NAME = "daily_goal_db";
-	public static final String GOAL_TABLE_NAME = "daily_goal_tb";
-	
-	
+	public static final String AUTHORITY = "com.google.provider.GoalProvider";
 }

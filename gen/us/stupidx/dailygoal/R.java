@@ -55,11 +55,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int button2=0x7f0a000f;
         public static final int confirm_btn=0x7f0a0006;
         public static final int goal_content_et=0x7f0a0003;
+        public static final int goal_list=0x7f0a0002;
+        public static final int goal_list_item=0x01010000;
         public static final int home_guesture_view=0x7f0a000d;
         public static final int hw_view=0x7f0a0005;
         public static final int layout_home=0x7f0a0007;
         public static final int linearLayout1=0x7f0a0000;
-        public static final int listView1=0x7f0a0002;
         public static final int morning_time=0x7f0a0012;
         public static final int save_setting=0x7f0a0014;
         public static final int scrollView1=0x7f0a0010;
@@ -75,6 +76,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int activity_home=0x7f030003;
         public static final int activity_settings=0x7f030004;
         public static final int activity_start=0x7f030005;
+        public static final int goal_list_item=0x7f030006;
     }
     public static final class menu {
         public static final int archive=0x7f090000;
