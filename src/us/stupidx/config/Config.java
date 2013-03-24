@@ -7,4 +7,6 @@ public final class Config {
 	// DB Config
 	public static final String DB_NAME = "daily_goal_db";
 	public static final String AUTHORITY = "com.google.provider.GoalProvider";
+	public static final String MORNING_TIME = "morning_time";
+	public static final String AFTERNOON_TIME = "afternoon_time";
 }

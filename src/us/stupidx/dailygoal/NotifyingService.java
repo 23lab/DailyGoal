@@ -79,6 +79,7 @@ public class NotifyingService extends Service {
 		return mBinder;
 	}
 
+	@SuppressWarnings("deprecation")
 	protected void showNotification(int moodId, int textId) {
 		CharSequence text = getText(textId);
 

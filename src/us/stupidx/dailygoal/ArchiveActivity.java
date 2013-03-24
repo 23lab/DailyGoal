@@ -1,63 +1,75 @@
 package us.stupidx.dailygoal;
 
 import us.stupidx.config.DailyGoal_tbl;
-import android.app.ListActivity;
+import us.stupidx.db.GoalOpenHelper;
+import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
-public class ArchiveActivity extends ListActivity {
-
+public class ArchiveActivity extends Activity {
 	private EditText etGoalContent;
+	private ListView goalList;
+	private GoalOpenHelper openHelper;
+	private Cursor goalListCursor;
 
-	private static final String[] PROJECTION = new String[] {
-			DailyGoal_tbl.GoalColumn._ID, // 0
-			DailyGoal_tbl.GoalColumn.COL_CTN, // 1
-	};
+	private void fillGoalList() {
+		String[] dataColumns = { DailyGoal_tbl.GoalColumn.COL_DATE,
+				DailyGoal_tbl.GoalColumn.COL_CTN };
+
+		int[] viewIDs = { R.id.goal_list_item_date, R.id.goal_list_item_ctn };
+
+		// 从数据库读取所有goals
+		goalListCursor = openHelper.readAll();
+		@SuppressWarnings("deprecation")
+		SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
+				R.layout.goal_list_item, // Points to the XML for a list item
+				goalListCursor, // The cursor to get items from
+				dataColumns, viewIDs);
+		// Sets the ListView's adapter to be the cursor adapter that was just
+		// created.
+		goalList = (ListView) findViewById(R.id.goal_list);
+		goalList.setAdapter(adapter);
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_archive);
-		etGoalContent = (EditText) findViewById(R.id.goal_content_et);
+		openHelper = new GoalOpenHelper(this);
+		etGoalContent = (EditText) findViewById(R.id.goal_content);
 
-		@SuppressWarnings("deprecation")
-		Cursor cursor = managedQuery(getIntent().getData(), // Use the default
-				// content URI for
-				// the provider.
-				PROJECTION, // Return the note ID and content for each note.
-				null, // No where clause, return all records.
-				null, // No where clause, therefore no where column values.
-				DailyGoal_tbl.GoalColumn.DEFAULT_SORT_ORDER // Use the default
-															// sort order.
-		);
-
-		String[] dataColumns = { DailyGoal_tbl.GoalColumn.COL_CTN };
-		int[] viewIDs = { R.id.goal_list };
-		SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, // The
-				// Context
-				// for the
-				// ListView
-				R.layout.goal_list_item, // Points to the XML for a list item
-				cursor, // The cursor to get items from
-				dataColumns, viewIDs);
-
-		// Sets the ListView's adapter to be the cursor adapter that was just
-		// created.
-		setListAdapter(adapter);
+		this.fillGoalList();
 
 		findViewById(R.id.add_goal_btn).setOnClickListener(
-				new OnClickListener() {
+				new AddGoalListener());
 
-					@Override
-					public void onClick(View v) {
-						String goalContent = etGoalContent.getText().toString();
-					}
-				});
+	}
+
+	// 添加按钮的监听
+	private class AddGoalListener implements OnClickListener {
+		@Override
+		public void onClick(View v) {
+			Cursor cursor = openHelper.readCurrentGoal();
+			if (cursor.getCount() > 0) {
+				Log.i("cursor.getCount()", "" + cursor.getCount());
+				// update
+				int updatedCount = openHelper.updateCurrentGoal(etGoalContent
+						.getText().toString());
+				Log.i("updatedCount", "" + updatedCount);
+			} else {
+				Long insertedId = openHelper.insertCurrentGoal(etGoalContent
+						.getText().toString());
+				Log.i("insertedId", "" + insertedId);
+			}
+			ArchiveActivity.this.fillGoalList();
+		}
 	}
 
 	@Override

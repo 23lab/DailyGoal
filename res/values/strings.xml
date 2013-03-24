@@ -13,5 +13,6 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_archive">ArchiveActivity</string>
     <string name="title_activity_settings">SettingsActivity</string>
+    <string name="today_s_goal">"您今日要完成的目标为: "</string>
 
 </resources>

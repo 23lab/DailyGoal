@@ -1,21 +1,30 @@
 package us.stupidx.dailygoal;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import us.stupidx.config.Config;
+import us.stupidx.config.DailyGoal_tbl;
 import us.stupidx.config.Direction;
+import us.stupidx.db.GoalOpenHelper;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.gesture.GestureOverlayView;
 import android.gesture.GestureOverlayView.OnGestureListener;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MotionEvent;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class HomeActivity extends Activity {
 	Point gestureStart = new Point(), gestureEnd = new Point();
-
+	GoalOpenHelper openHelper;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -24,24 +33,26 @@ public class HomeActivity extends Activity {
 		SharedPreferences settings = this.getSharedPreferences(
 				Config.PREFS_NAME, 0);
 
-		Toast.makeText(this, settings.getString("morning_time", "moring_time"),
+		Toast.makeText(this,
+				settings.getString(Config.MORNING_TIME, "no morning time"),
 				Toast.LENGTH_LONG).show();
 
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日", Locale.CHINA);
+		Date today = new Date();
+		((TextView) findViewById(R.id.today_date_tv)).setText(sdf.format(today));
+		((TextView) findViewById(R.id.today_day_tv)).setText("星期" + today.getDay());
+		
 		GestureOverlayView gestures = (GestureOverlayView) findViewById(R.id.home_guesture_view);
 		gestures.setGestureVisible(false);
 		gestures.addOnGestureListener(new OnGestureListener() {
 
-			final int validDragDistance = 100;
-
 			@Override
 			public void onGesture(GestureOverlayView arg0, MotionEvent arg1) {
-
 			}
 
 			@Override
 			public void onGestureCancelled(GestureOverlayView arg0,
 					MotionEvent arg1) {
-
 			}
 
 			@Override
@@ -53,8 +64,8 @@ public class HomeActivity extends Activity {
 					this.redirectTo(ArchiveActivity.class, Direction.RIGHT);
 				} else if (gestureStart.x - gestureEnd.x > Config.VALID_DRAG_DISTANCE) {
 					this.redirectTo(SettingsActivity.class, Direction.LEFT);
-				} else if (gestureStart.y - gestureEnd.x > Config.VALID_DRAG_DISTANCE){
-					this.redirectTo(GoalAddActivity.class, Direction.UP);
+				} else if (gestureStart.y - gestureEnd.x > Config.VALID_DRAG_DISTANCE) {
+					// this.redirectTo(GoalAddActivity.class, Direction.UP);
 				}
 			}
 
@@ -63,12 +74,6 @@ public class HomeActivity extends Activity {
 					MotionEvent arg1) {
 				gestureStart.x = (int) arg1.getX();
 				gestureStart.y = (int) arg1.getY();
-			}
-
-			private double distance(Point first, Point second) {
-				int subX = Math.abs(second.x - first.x);
-				int subY = Math.abs(second.y - first.y);
-				return Math.sqrt(Math.pow(subX, 2) + Math.pow(subY, 2));
 			}
 
 			private void redirectTo(Class<? extends Activity> c, Direction d) {
@@ -98,5 +103,27 @@ public class HomeActivity extends Activity {
 		// getMenuInflater().inflate(R.menu.home, menu);
 		return true;
 	}
+	
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		openHelper = new GoalOpenHelper(this);
+		Cursor cursor = openHelper.readCurrentGoal();
+		cursor.moveToFirst();
+		String ctn = cursor.getString(cursor.getColumnIndex(DailyGoal_tbl.GoalColumn.COL_CTN));
+		
+		TextView tvTodayGoal = (TextView)findViewById(R.id.today_goal_tv);
+		tvTodayGoal.setText(ctn);
+	}
 
+	public void x(){
+		openHelper = new GoalOpenHelper(this);
+		Cursor cursor = openHelper.readCurrentGoal();
+		cursor.moveToFirst();
+		String ctn = cursor.getString(cursor.getColumnIndex(DailyGoal_tbl.GoalColumn.COL_CTN));
+		
+		TextView tvTodayGoal = (TextView)findViewById(R.id.today_goal_tv);
+		tvTodayGoal.setText(ctn);
+	}
 }

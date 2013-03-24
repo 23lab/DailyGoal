@@ -1,7 +1,6 @@
 package us.stupidx.dailygoal;
 
 import android.app.Activity;
-import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,7 +19,7 @@ public class GoalAddActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_goal_add);
 
-		goalContent = (EditText) findViewById(R.id.goal_content_et);
+		goalContent = (EditText) findViewById(R.id.goal_content);
 		confirmBtn = (Button) findViewById(R.id.confirm_btn);
 
 		confirmBtn.setOnClickListener(confirmLsn);

@@ -24,6 +24,7 @@ public class GoalProvider extends ContentProvider {
 	private GoalOpenHelper mOpenHelper;
 
 	static {
+		sURIMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 		sURIMatcher.addURI(Config.AUTHORITY, "goals", GOALS);
 		sURIMatcher.addURI(Config.AUTHORITY, "goal/#", GOAL_ID);
 
