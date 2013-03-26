@@ -22,7 +22,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class HomeActivity extends Activity {
-	Point gestureStart = new Point(), gestureEnd = new Point();
 	GoalOpenHelper openHelper;
 
 	@Override
@@ -46,57 +45,8 @@ public class HomeActivity extends Activity {
 
 		GestureOverlayView gestures = (GestureOverlayView) findViewById(R.id.home_guesture_view);
 		gestures.setGestureVisible(false);
-		gestures.addOnGestureListener(new OnGestureListener() {
-
-			@Override
-			public void onGesture(GestureOverlayView arg0, MotionEvent arg1) {
-			}
-
-			@Override
-			public void onGestureCancelled(GestureOverlayView arg0,
-					MotionEvent arg1) {
-			}
-
-			@Override
-			public void onGestureEnded(GestureOverlayView arg0, MotionEvent arg1) {
-				gestureEnd.x = (int) arg1.getX();
-				gestureEnd.y = (int) arg1.getY();
-
-				if (gestureEnd.x - gestureStart.x > Config.VALID_DRAG_DISTANCE) {
-					this.redirectTo(ArchiveActivity.class, Direction.RIGHT);
-				} else if (gestureStart.x - gestureEnd.x > Config.VALID_DRAG_DISTANCE) {
-					this.redirectTo(SettingsActivity.class, Direction.LEFT);
-				} else if (gestureStart.y - gestureEnd.x > Config.VALID_DRAG_DISTANCE) {
-					// this.redirectTo(GoalAddActivity.class, Direction.UP);
-				}
-			}
-
-			@Override
-			public void onGestureStarted(GestureOverlayView arg0,
-					MotionEvent arg1) {
-				gestureStart.x = (int) arg1.getX();
-				gestureStart.y = (int) arg1.getY();
-			}
-
-			private void redirectTo(Class<? extends Activity> c, Direction d) {
-
-				Intent intent = new Intent(HomeActivity.this, c);
-				startActivity(intent);
-
-				if (Direction.UP.equals(d)) {
-
-				} else if (Direction.DOWN.equals(d)) {
-
-				} else if (Direction.LEFT.equals(d)) {
-					overridePendingTransition(R.anim.push_left_in,
-							R.anim.push_left_out);
-
-				} else if (Direction.RIGHT.equals(d)) {
-					overridePendingTransition(R.anim.push_right_in,
-							R.anim.push_right_out);
-				}
-			}
-		});
+		gestures.addOnGestureListener(new NavGestureListener(this,
+				ArchiveActivity.class, SettingsActivity.class));
 	}
 
 	@Override

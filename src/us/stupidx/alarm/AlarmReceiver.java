@@ -5,11 +5,14 @@ import java.util.Date;
 import us.stupidx.dailygoal.ArchiveActivity;
 import us.stupidx.dailygoal.R;
 import android.app.Activity;
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationCompat.Builder;
 import android.widget.Toast;
 
 public class AlarmReceiver extends BroadcastReceiver {
@@ -28,7 +31,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
 			// 建立一个通知实例，第一个参数是图片，第二个标题栏上显示的文字，第三个是时间
 			Notification notification = new Notification(
-					R.drawable.ic_launcher, "要干什么啦那",
+					R.drawable.ic_launcher, "Notification",
 					System.currentTimeMillis());
 
 			// 当单击下拉下来的标题内容时候做什么，这里是跳转到主界面。这里和下面是一起的。
@@ -36,8 +39,8 @@ public class AlarmReceiver extends BroadcastReceiver {
 					new Intent(context, ArchiveActivity.class), 0);
 
 			// Title 是拉下来的标题，Content也是下拉后的内容显示
-			notification
-					.setLatestEventInfo(context, "NTF Title", "NTF Content", contentIntent);
+			notification.setLatestEventInfo(context, "NTF Title",
+					"NTF Content", contentIntent);
 
 			// 显示这个通知
 			mNotificationManager.notify(NOTIFICATIONS_ID, notification);

@@ -8,66 +8,76 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".SettingsActivity" >
 
-    <ScrollView
-        android:id="@+id/scrollView1"
+    <android.gesture.GestureOverlayView
+        android:id="@+id/setting_gesture_ov"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/button1" >
+        android:layout_alignParentTop="true" >
 
-        <TableLayout
-            android:id="@+id/TableLayout1"
-            android:layout_width="fill_parent"
-            android:layout_height="438dp"
-            android:orientation="vertical" >
+        <ScrollView
+            android:id="@+id/scrollView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/button1"
+            android:layout_marginTop="30dp" >
 
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="每日目标设定时间"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+            <TableLayout
+                android:id="@+id/TableLayout1"
+                android:layout_width="fill_parent"
+                android:layout_height="438dp"
+                android:orientation="vertical" >
 
-            <TimePicker
-                android:id="@+id/morning_time"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="每日目标设定时间"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="每日目标完成时间"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                <TimePicker
+                    android:id="@+id/morning_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
 
-            <TimePicker
-                android:id="@+id/afternoon_time"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="每日目标完成时间"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
 
-            <Button
-                android:id="@+id/save_setting"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="保存设置" />
-        </TableLayout>
-    </ScrollView>
+                <TimePicker
+                    android:id="@+id/afternoon_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/save_setting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="保存设置" />
+            </TableLayout>
+        </ScrollView>
+    </android.gesture.GestureOverlayView>
 
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/scrollView1"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
         android:background="@android:color/transparent"
         android:drawableLeft="@drawable/return_left"
         android:text="返回主页"

@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.gesture.GestureOverlayView;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -37,6 +38,10 @@ public class SettingsActivity extends Activity {
 			}
 
 		});
+
+		GestureOverlayView gov = (GestureOverlayView) findViewById(R.id.setting_gesture_ov);
+		gov.setGestureVisible(true);
+		gov.addOnGestureListener(new NavGestureListener(this, HomeActivity.class, null));
 
 	}
 

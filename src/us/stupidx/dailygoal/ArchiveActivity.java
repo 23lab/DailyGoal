@@ -4,11 +4,13 @@ import us.stupidx.config.DailyGoal_tbl;
 import us.stupidx.db.GoalOpenHelper;
 import android.app.Activity;
 import android.database.Cursor;
+import android.gesture.GestureOverlayView;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -50,6 +52,21 @@ public class ArchiveActivity extends Activity {
 		findViewById(R.id.add_goal_btn).setOnClickListener(
 				new AddGoalListener());
 
+		GestureOverlayView gov = (GestureOverlayView) findViewById(R.id.archive_gesture_ov);
+		gov.setGestureVisible(true);
+		gov.addOnGestureListener(new NavGestureListener(this,
+				null, HomeActivity.class));
+		
+		Button rtnBtn = (Button) findViewById(R.id.archive_return_btn);
+		
+		rtnBtn.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				ArchiveActivity.this.finish();
+				ArchiveActivity.this.overridePendingTransition(R.anim.push_left_in,
+						R.anim.push_left_out);
+			}
+		});
 	}
 
 	// Ìí¼Ó°´Å¥µÄ¼àÌý
@@ -71,9 +88,7 @@ public class ArchiveActivity extends Activity {
 			ArchiveActivity.this.fillGoalList();
 		}
 	}
-	
-	
-	
+
 	@Override
 	protected void onPause() {
 		super.onPause();
