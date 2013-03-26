@@ -6,12 +6,12 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
-import android.text.format.Time;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 public class SettingsActivity extends Activity {
 
@@ -27,7 +27,13 @@ public class SettingsActivity extends Activity {
 		saveBtn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				SettingsActivity.this.saveSettings();
+				if (SettingsActivity.this.saveSettings()) {
+					Toast.makeText(SettingsActivity.this, "设置保存成功",
+							Toast.LENGTH_LONG).show();
+				} else {
+					Toast.makeText(SettingsActivity.this, "设置保存成功",
+							Toast.LENGTH_LONG).show();
+				}
 			}
 
 		});
@@ -40,7 +46,7 @@ public class SettingsActivity extends Activity {
 		String morningTime = settings.getString(Config.MORNING_TIME, null);
 		if (morningTime != null) {
 			TimePicker tp = (TimePicker) findViewById(R.id.morning_time);
-			
+
 			String[] time = morningTime.split(":");
 			tp.setCurrentHour(Integer.parseInt(time[0]));
 			tp.setCurrentMinute(Integer.parseInt(time[1]));
@@ -57,7 +63,7 @@ public class SettingsActivity extends Activity {
 
 	@SuppressLint("WorldWriteableFiles")
 	@SuppressWarnings("deprecation")
-	public void saveSettings() {
+	public boolean saveSettings() {
 		TimePicker morningTimePicker = (TimePicker) findViewById(R.id.morning_time);
 		TimePicker afternoonTimePicker = (TimePicker) findViewById(R.id.afternoon_time);
 
@@ -72,7 +78,7 @@ public class SettingsActivity extends Activity {
 		Editor editor = settings.edit();
 		editor.putString(Config.MORNING_TIME, morningTime);
 		editor.putString(Config.AFTERNOON_TIME, afternoonTime);
-		editor.commit();
+		return editor.commit();
 
 	}
 

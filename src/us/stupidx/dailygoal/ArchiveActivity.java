@@ -71,6 +71,14 @@ public class ArchiveActivity extends Activity {
 			ArchiveActivity.this.fillGoalList();
 		}
 	}
+	
+	
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		openHelper.close();
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

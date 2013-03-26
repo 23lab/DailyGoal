@@ -17,6 +17,14 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class GoalOpenHelper extends SQLiteOpenHelper {
 	private static final int DATABASE_VERSION = 3;
 
+	private SQLiteDatabase db = null;
+
+	private void closeDb() {
+		if (this.db != null) {
+			this.db.close();
+		}
+	}
+
 	private static final String GOAL_TABLE_CREATE = "CREATE TABLE "
 			+ DailyGoal_tbl.TBL_NAME + " (" + DailyGoal_tbl.GoalColumn._ID
 			+ " INT, " + DailyGoal_tbl.GoalColumn.COL_DATE + " TEXT, "
@@ -44,7 +52,7 @@ public class GoalOpenHelper extends SQLiteOpenHelper {
 	}
 
 	public Cursor readAll() {
-		SQLiteDatabase rDb = this.getReadableDatabase();
+		SQLiteDatabase rDb = this.db = this.getReadableDatabase();
 
 		String[] queryCols = {};
 		String selection = null;
@@ -59,7 +67,7 @@ public class GoalOpenHelper extends SQLiteOpenHelper {
 	public Cursor readCurrentGoal() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
 		Date today = new Date();
-		SQLiteDatabase db = this.getWritableDatabase();
+		SQLiteDatabase db = this.db = this.getWritableDatabase();
 
 		String[] queryCols = {};
 		String selection = DailyGoal_tbl.GoalColumn.COL_DATE + " = ? ";
@@ -72,7 +80,7 @@ public class GoalOpenHelper extends SQLiteOpenHelper {
 	public int updateCurrentGoal(String goalCtn) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
 		Date today = new Date();
-		SQLiteDatabase db = this.getWritableDatabase();
+		SQLiteDatabase db = this.db = this.getWritableDatabase();
 		ContentValues values = new ContentValues();
 		values.put(DailyGoal_tbl.GoalColumn.COL_CTN, goalCtn);
 		String whereClause = DailyGoal_tbl.GoalColumn.COL_DATE + " = ? ";
@@ -85,7 +93,7 @@ public class GoalOpenHelper extends SQLiteOpenHelper {
 	public long insertCurrentGoal(String goalCtn) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
 		Date today = new Date();
-		SQLiteDatabase db = this.getWritableDatabase();
+		SQLiteDatabase db = this.db = this.getWritableDatabase();
 		ContentValues values = new ContentValues();
 		values.put(DailyGoal_tbl.GoalColumn.COL_DATE, sdf.format(today));
 		values.put(DailyGoal_tbl.GoalColumn.COL_CTN, goalCtn);

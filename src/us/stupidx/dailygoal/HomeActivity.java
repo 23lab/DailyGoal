@@ -24,7 +24,7 @@ import android.widget.Toast;
 public class HomeActivity extends Activity {
 	Point gestureStart = new Point(), gestureEnd = new Point();
 	GoalOpenHelper openHelper;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -39,9 +39,11 @@ public class HomeActivity extends Activity {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日", Locale.CHINA);
 		Date today = new Date();
-		((TextView) findViewById(R.id.today_date_tv)).setText(sdf.format(today));
-		((TextView) findViewById(R.id.today_day_tv)).setText("星期" + today.getDay());
-		
+		((TextView) findViewById(R.id.today_date_tv))
+				.setText(sdf.format(today));
+		((TextView) findViewById(R.id.today_day_tv)).setText("星期"
+				+ today.getDay());
+
 		GestureOverlayView gestures = (GestureOverlayView) findViewById(R.id.home_guesture_view);
 		gestures.setGestureVisible(false);
 		gestures.addOnGestureListener(new OnGestureListener() {
@@ -103,27 +105,24 @@ public class HomeActivity extends Activity {
 		// getMenuInflater().inflate(R.menu.home, menu);
 		return true;
 	}
-	
-	
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		openHelper.close();
+	}
+
 	@Override
 	protected void onResume() {
 		super.onResume();
 		openHelper = new GoalOpenHelper(this);
 		Cursor cursor = openHelper.readCurrentGoal();
-		cursor.moveToFirst();
-		String ctn = cursor.getString(cursor.getColumnIndex(DailyGoal_tbl.GoalColumn.COL_CTN));
-		
-		TextView tvTodayGoal = (TextView)findViewById(R.id.today_goal_tv);
-		tvTodayGoal.setText(ctn);
-	}
-
-	public void x(){
-		openHelper = new GoalOpenHelper(this);
-		Cursor cursor = openHelper.readCurrentGoal();
-		cursor.moveToFirst();
-		String ctn = cursor.getString(cursor.getColumnIndex(DailyGoal_tbl.GoalColumn.COL_CTN));
-		
-		TextView tvTodayGoal = (TextView)findViewById(R.id.today_goal_tv);
-		tvTodayGoal.setText(ctn);
+		if (cursor.getCount() == 1) {
+			cursor.moveToFirst();
+			String ctn = cursor.getString(cursor
+					.getColumnIndex(DailyGoal_tbl.GoalColumn.COL_CTN));
+			TextView tvTodayGoal = (TextView) findViewById(R.id.today_goal_tv);
+			tvTodayGoal.setText(ctn);
+		}
 	}
 }

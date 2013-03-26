@@ -13,6 +13,17 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        <receiver android:name="us.stupidx.alarm.AlarmReceiver" >
+            <intent-filter>
+                <action android:name="android.alarm.demo.action" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="us.stupidx.alarm.BootReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
         <provider
             android:name="us.stupidx.dailygoal.GoalProvider"
             android:authorities="com.google.provider.GoalProvider"
