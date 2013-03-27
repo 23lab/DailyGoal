@@ -8,52 +8,36 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ArchiveActivity" >
 
-    <android.gesture.GestureOverlayView
-        android:id="@+id/archive_gesture_ov"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true" >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/add_goal_layout"
+        android:layout_below="@+id/nav_bar_layout" >
 
-        <LinearLayout
-            android:id="@+id/linearLayout1"
+        <android.gesture.GestureOverlayView
+            android:id="@+id/archive_gesture_ov"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:orientation="vertical" >
+            android:layout_alignParentTop="true" >
 
-            <RelativeLayout
+            <ListView
+                android:id="@+id/goal_list"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
-
-                <Button
-                    android:id="@+id/archive_return_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentTop="true"
-                    android:text="Return" />
-
-                <ListView
-                    android:id="@+id/goal_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="395dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_below="@+id/archive_return_btn" >
-                </ListView>
-            </RelativeLayout>
-        </LinearLayout>
-    </android.gesture.GestureOverlayView>
+                android:layout_height="395dp" >
+            </ListView>
+        </android.gesture.GestureOverlayView>
+    </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/add_goal_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/linearLayout1"
-        android:layout_alignParentBottom="true" >
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true" >
 
         <EditText
             android:id="@+id/goal_content"
@@ -77,6 +61,24 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:text="+" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/nav_bar_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true" >
+
+        <Button
+            android:id="@+id/archive_return_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:text="Return" />
+
     </RelativeLayout>
 
 </RelativeLayout>

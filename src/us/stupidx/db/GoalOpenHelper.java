@@ -15,20 +15,17 @@ import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class GoalOpenHelper extends SQLiteOpenHelper {
-	private static final int DATABASE_VERSION = 3;
+	private static final int DATABASE_VERSION = 5;
 
 	private SQLiteDatabase db = null;
-
-	private void closeDb() {
-		if (this.db != null) {
-			this.db.close();
-		}
-	}
 
 	private static final String GOAL_TABLE_CREATE = "CREATE TABLE "
 			+ DailyGoal_tbl.TBL_NAME + " (" + DailyGoal_tbl.GoalColumn._ID
 			+ " INT, " + DailyGoal_tbl.GoalColumn.COL_DATE + " TEXT, "
-			+ DailyGoal_tbl.GoalColumn.COL_CTN + " TEXT);";
+			+ DailyGoal_tbl.GoalColumn.COL_CTN + " TEXT, "
+			+ DailyGoal_tbl.GoalColumn.COL_CREATE_AT + " TEXT, "
+			+ DailyGoal_tbl.GoalColumn.COL_UPDATE_AT + " TEXT, "
+			+ DailyGoal_tbl.GoalColumn.COL_FINISH_AT + " TEXT " + ");";
 
 	public GoalOpenHelper(Context context) {
 		// calls the super constructor, requesting the default cursor factory.
@@ -100,5 +97,18 @@ public class GoalOpenHelper extends SQLiteOpenHelper {
 
 		long insertedId = db.insert(DailyGoal_tbl.TBL_NAME, "", values);
 		return insertedId;
+	}
+
+	public void finishiGoal() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
+		Date today = new Date();
+		SQLiteDatabase db = this.db = this.getWritableDatabase();
+		ContentValues values = new ContentValues();
+		values.put(DailyGoal_tbl.GoalColumn.COL_DATE, sdf.format(today));
+		values.put(DailyGoal_tbl.GoalColumn.COL_FINISH_AT, today.toString());
+		
+		String where = DailyGoal_tbl.GoalColumn.COL_DATE + " = ? ";
+		String[] params = {sdf.format(today)};
+		db.update(DailyGoal_tbl.TBL_NAME, values, where, params);
 	}
 }

@@ -6,23 +6,25 @@ import java.util.Locale;
 
 import us.stupidx.config.Config;
 import us.stupidx.config.DailyGoal_tbl;
-import us.stupidx.config.Direction;
 import us.stupidx.db.GoalOpenHelper;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.gesture.GestureOverlayView;
-import android.gesture.GestureOverlayView.OnGestureListener;
-import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class HomeActivity extends Activity {
 	GoalOpenHelper openHelper;
+	private CheckBox cbTodayGoal;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,10 +45,46 @@ public class HomeActivity extends Activity {
 		((TextView) findViewById(R.id.today_day_tv)).setText("ÐÇÆÚ"
 				+ today.getDay());
 
+		cbTodayGoal = (CheckBox) findViewById(R.id.today_goal_cb);
+		cbTodayGoal.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
+				if (arg1) {
+					Toast.makeText(HomeActivity.this, "Yes", Toast.LENGTH_SHORT)
+							.show();
+					openHelper.finishiGoal();
+				} else {
+					Toast.makeText(HomeActivity.this, "No", Toast.LENGTH_SHORT)
+							.show();
+				}
+			}
+		});
 		GestureOverlayView gestures = (GestureOverlayView) findViewById(R.id.home_guesture_view);
 		gestures.setGestureVisible(false);
 		gestures.addOnGestureListener(new NavGestureListener(this,
 				ArchiveActivity.class, SettingsActivity.class));
+
+		findViewById(R.id.setting_btn).setOnClickListener(
+				new OnClickListener() {
+					@Override
+					public void onClick(View arg0) {
+						HomeActivity.this.startActivity(new Intent(
+								HomeActivity.this, SettingsActivity.class));
+						HomeActivity.this.overridePendingTransition(
+								R.anim.push_left_in, R.anim.push_left_out);
+					}
+				});
+
+		findViewById(R.id.archive_btn).setOnClickListener(
+				new OnClickListener() {
+					@Override
+					public void onClick(View arg0) {
+						HomeActivity.this.startActivity(new Intent(
+								HomeActivity.this, ArchiveActivity.class));
+						HomeActivity.this.overridePendingTransition(
+								R.anim.push_right_in, R.anim.push_right_out);
+					}
+				});
 	}
 
 	@Override
@@ -71,8 +109,13 @@ public class HomeActivity extends Activity {
 			cursor.moveToFirst();
 			String ctn = cursor.getString(cursor
 					.getColumnIndex(DailyGoal_tbl.GoalColumn.COL_CTN));
-			TextView tvTodayGoal = (TextView) findViewById(R.id.today_goal_tv);
-			tvTodayGoal.setText(ctn);
+			String finishiAt = cursor.getString(cursor
+					.getColumnIndex(DailyGoal_tbl.GoalColumn.COL_FINISH_AT));
+			if (finishiAt != null) {
+				cbTodayGoal.setChecked(true);
+				cbTodayGoal.setEnabled(false);
+			}
+			cbTodayGoal.setText(ctn);
 		}
 	}
 }

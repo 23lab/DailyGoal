@@ -8,80 +8,94 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".SettingsActivity" >
 
-    <android.gesture.GestureOverlayView
-        android:id="@+id/setting_gesture_ov"
+    <RelativeLayout
+        android:id="@+id/nav_bar_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true" >
 
-        <ScrollView
-            android:id="@+id/scrollView1"
+        <Button
+            android:id="@+id/button1"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/return_left"
+            android:text="返回主页"
+            android:textColor="#fff"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/save_layout"
+        android:layout_below="@+id/nav_bar_layout" >
+
+        <android.gesture.GestureOverlayView
+            android:id="@+id/setting_gesture_ov"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/button1"
-            android:layout_marginTop="30dp" >
+            android:layout_alignParentTop="true" >
 
-            <TableLayout
-                android:id="@+id/TableLayout1"
-                android:layout_width="fill_parent"
-                android:layout_height="438dp"
-                android:orientation="vertical" >
+            <RelativeLayout
+                android:layout_width="264dp"
+                android:layout_height="390dp" >
 
-                <TextView
-                    android:id="@+id/textView1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:text="每日目标设定时间"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                <TableLayout
+                    android:id="@+id/TableLayout1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="438dp"
+                    android:orientation="vertical" >
 
-                <TimePicker
-                    android:id="@+id/morning_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
+                    <TextView
+                        android:id="@+id/textView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="每日目标设定时间"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
 
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:text="每日目标完成时间"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                    <TimePicker
+                        android:id="@+id/morning_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
 
-                <TimePicker
-                    android:id="@+id/afternoon_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="每日目标完成时间"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
 
-                <Button
-                    android:id="@+id/save_setting"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:text="保存设置" />
-            </TableLayout>
-        </ScrollView>
-    </android.gesture.GestureOverlayView>
+                    <TimePicker
+                        android:id="@+id/afternoon_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/button1"
+                </TableLayout>
+            </RelativeLayout>
+        </android.gesture.GestureOverlayView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/save_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/scrollView1"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:background="@android:color/transparent"
-        android:drawableLeft="@drawable/return_left"
-        android:text="返回主页"
-        android:textColor="#fff"
-        android:textSize="16dp" />
+        android:layout_alignParentRight="true" >
+
+        <Button
+            android:id="@+id/save_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:text="保存设置" />
+    </RelativeLayout>
 
 </RelativeLayout>

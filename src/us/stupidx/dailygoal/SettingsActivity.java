@@ -12,17 +12,60 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TimePicker;
+import android.widget.TimePicker.OnTimeChangedListener;
 import android.widget.Toast;
 
 public class SettingsActivity extends Activity {
+	private TimePicker aTp, mTp;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_settings);
 
+		mTp = (TimePicker) findViewById(R.id.morning_time);
+		mTp.setIs24HourView(true);
+
+		aTp = (TimePicker) findViewById(R.id.afternoon_time);
+		aTp.setIs24HourView(true);
 		this.fillCurrentSetting();
-		// TimePicker tp = (TimePicker)findViewById(R.id.morning_time);
+
+		mTp.setOnTimeChangedListener(new OnTimeChangedListener() {
+			@Override
+			public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+				int hour = mTp.getCurrentHour();
+				if (hour == 23) {
+					Toast.makeText(SettingsActivity.this, "目标设定时间必须在0-11点之间",
+							Toast.LENGTH_SHORT).show();
+					mTp.setCurrentHour(0);
+				}
+
+				if (hour == 11) {
+					Toast.makeText(SettingsActivity.this, "目标设定时间必须在0-11点之间",
+							Toast.LENGTH_SHORT).show();
+					mTp.setCurrentHour(10);
+				}
+			}
+		});
+
+		aTp.setOnTimeChangedListener(new OnTimeChangedListener() {
+			@Override
+			public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+				int hour = aTp.getCurrentHour();
+				if (hour == 16) {
+					Toast.makeText(SettingsActivity.this, "目标完成时间必须在17-0点之间",
+							Toast.LENGTH_SHORT).show();
+					aTp.setCurrentHour(17);
+				}
+
+				if (hour == 0) {
+					Toast.makeText(SettingsActivity.this, "目标完成时间必须在19-0点之间",
+							Toast.LENGTH_SHORT).show();
+					aTp.setCurrentHour(23);
+				}
+
+			}
+		});
 
 		Button saveBtn = (Button) findViewById(R.id.save_setting);
 		saveBtn.setOnClickListener(new OnClickListener() {
@@ -32,7 +75,7 @@ public class SettingsActivity extends Activity {
 					Toast.makeText(SettingsActivity.this, "设置保存成功",
 							Toast.LENGTH_LONG).show();
 				} else {
-					Toast.makeText(SettingsActivity.this, "设置保存成功",
+					Toast.makeText(SettingsActivity.this, "设置保存失败",
 							Toast.LENGTH_LONG).show();
 				}
 			}
@@ -41,7 +84,8 @@ public class SettingsActivity extends Activity {
 
 		GestureOverlayView gov = (GestureOverlayView) findViewById(R.id.setting_gesture_ov);
 		gov.setGestureVisible(true);
-		gov.addOnGestureListener(new NavGestureListener(this, HomeActivity.class, null));
+		gov.addOnGestureListener(new NavGestureListener(this,
+				HomeActivity.class, null));
 
 	}
 
@@ -50,19 +94,22 @@ public class SettingsActivity extends Activity {
 				Config.PREFS_NAME, 0);
 		String morningTime = settings.getString(Config.MORNING_TIME, null);
 		if (morningTime != null) {
-			TimePicker tp = (TimePicker) findViewById(R.id.morning_time);
-
 			String[] time = morningTime.split(":");
-			tp.setCurrentHour(Integer.parseInt(time[0]));
-			tp.setCurrentMinute(Integer.parseInt(time[1]));
+			mTp.setCurrentHour(Integer.parseInt(time[0]));
+			mTp.setCurrentMinute(Integer.parseInt(time[1]));
+		} else {
+			mTp.setCurrentHour(9);
+			mTp.setCurrentMinute(0);
 		}
 
 		String afternoonTime = settings.getString(Config.AFTERNOON_TIME, null);
 		if (afternoonTime != null) {
-			TimePicker tp = (TimePicker) findViewById(R.id.afternoon_time);
 			String[] time = afternoonTime.split(":");
-			tp.setCurrentHour(Integer.parseInt(time[0]));
-			tp.setCurrentMinute(Integer.parseInt(time[0]));
+			aTp.setCurrentHour(Integer.parseInt(time[0]));
+			aTp.setCurrentMinute(Integer.parseInt(time[0]));
+		} else {
+			aTp.setCurrentHour(18);
+			aTp.setCurrentMinute(0);
 		}
 	}
 

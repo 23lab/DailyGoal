@@ -9,31 +9,37 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".HomeActivity" >
 
-    <LinearLayout
-        android:id="@+id/linearLayout1"
+    <RelativeLayout
+        android:id="@+id/RelativeLayout1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true" >
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/setting_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Setting" />
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:text="设置" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/archive_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Button" />
-    </LinearLayout>
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:text="归档" />
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/linearLayout1"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/linearLayout1" >
+        android:layout_below="@+id/RelativeLayout1" >
 
         <android.gesture.GestureOverlayView
             android:id="@+id/home_guesture_view"
@@ -44,53 +50,62 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true" >
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true" >
+
+                <AnalogClock
+                    android:id="@+id/analogClock1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true" />
+
+                <TextView
+                    android:id="@+id/today_date_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:text="ss"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textIsSelectable="true" />
+
+                <TextView
+                    android:id="@+id/today_day_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="24dp"
+                    android:layout_toRightOf="@+id/today_date_tv"
+                    android:text="星期一"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <CheckBox
+                    android:id="@+id/today_goal_cb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/analogClock1"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginBottom="88dp"
+                    android:text="未设定目标,点击设置" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/today_goal_cb"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginBottom="21dp"
+                    android:text="@string/today_s_goal"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            </RelativeLayout>
         </android.gesture.GestureOverlayView>
-
-        <TextView
-            android:id="@+id/today_date_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ss"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textIsSelectable="true" />
-
-        <AnalogClock
-            android:id="@+id/analogClock1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="28dp" />
-
-        <TextView
-            android:id="@+id/today_goal_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/analogClock1"
-            android:layout_alignLeft="@+id/today_day_tv"
-            android:layout_marginBottom="63dp"
-            android:text="未设定目标,点击设置"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#f00" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/today_goal_tv"
-            android:layout_alignLeft="@+id/today_day_tv"
-            android:text="@string/today_s_goal"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        <TextView
-            android:id="@+id/today_day_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/today_date_tv"
-            android:layout_toLeftOf="@+id/analogClock1"
-            android:text="星期一"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
     </RelativeLayout>
 
 </RelativeLayout>
