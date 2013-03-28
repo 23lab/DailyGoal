@@ -17,7 +17,7 @@
         android:layout_alignParentTop="true" >
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/setting_rtn_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"

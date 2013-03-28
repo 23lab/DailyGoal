@@ -3,6 +3,7 @@ package us.stupidx.dailygoal;
 import us.stupidx.config.Config;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.gesture.GestureOverlayView;
@@ -50,8 +51,7 @@ public class SettingsActivity extends Activity {
 
 		aTp.setOnTimeChangedListener(new OnTimeChangedListener() {
 			@Override
-			public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
-				int hour = aTp.getCurrentHour();
+			public void onTimeChanged(TimePicker view, int hour, int minute) {
 				if (hour == 16) {
 					Toast.makeText(SettingsActivity.this, "目标完成时间必须在17-0点之间",
 							Toast.LENGTH_SHORT).show();
@@ -79,8 +79,18 @@ public class SettingsActivity extends Activity {
 							Toast.LENGTH_LONG).show();
 				}
 			}
-
 		});
+
+		findViewById(R.id.setting_rtn_btn).setOnClickListener(
+				new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						SettingsActivity.this.startActivity(new Intent(
+								SettingsActivity.this, HomeActivity.class));
+						SettingsActivity.this.overridePendingTransition(
+								R.anim.push_right_in, R.anim.push_right_out);
+					}
+				});
 
 		GestureOverlayView gov = (GestureOverlayView) findViewById(R.id.setting_gesture_ov);
 		gov.setGestureVisible(true);

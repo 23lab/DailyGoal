@@ -9,6 +9,7 @@
     <declare-styleable name="ButtonBarContainerTheme">
         <attr name="buttonBarStyle" format="reference" />
         <attr name="buttonBarButtonStyle" format="reference" />
+	    <attr name="timePickerStyle" format="reference" />
     </declare-styleable>
 
 </resources>

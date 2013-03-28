@@ -23,6 +23,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
         public static final int buttonBarStyle=0x7f010000;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int timePickerStyle=0x7f010002;
     }
     public static final class color {
         public static final int black_overlay=0x7f050000;
@@ -38,44 +42,61 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int activity_vertical_margin=0x7f060001;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
-        public static final int return_left=0x7f020001;
-        public static final int return_left_btn=0x7f020002;
-        public static final int return_right_btn=0x7f020003;
-        public static final int tianping=0x7f020004;
+        public static final int button_hover=0x7f020000;
+        public static final int ic_launcher=0x7f020001;
+        public static final int picker_bottom=0x7f020002;
+        public static final int picker_middle=0x7f020003;
+        public static final int picker_top=0x7f020004;
+        public static final int return_left=0x7f020005;
+        public static final int return_left_btn=0x7f020006;
+        public static final int return_right_btn=0x7f020007;
+        public static final int tianping=0x7f020008;
     }
     public static final class id {
-        public static final int RelativeLayout1=0x7f0a000a;
-        public static final int TableLayout1=0x7f0a0016;
-        public static final int action_settings=0x7f0a001c;
-        public static final int add_goal_btn=0x7f0a0005;
+        public static final int RelativeLayout1=0x7f0a000b;
+        public static final int TableLayout1=0x7f0a0017;
+        public static final int action_settings=0x7f0a0029;
+        public static final int add_goal_btn=0x7f0a0006;
         public static final int add_goal_layout=0x7f0a0000;
-        public static final int afternoon_time=0x7f0a001a;
-        public static final int analogClock1=0x7f0a000e;
-        public static final int archive_btn=0x7f0a000c;
+        public static final int afternoon_time=0x7f0a001b;
+        public static final int amPm=0x7f0a001f;
+        public static final int am_pm=0x7f0a0028;
+        public static final int analogClock1=0x7f0a000f;
+        public static final int archive_btn=0x7f0a000d;
         public static final int archive_gesture_ov=0x7f0a0002;
-        public static final int archive_return_btn=0x7f0a0006;
-        public static final int button1=0x7f0a0013;
-        public static final int confirm_btn=0x7f0a0008;
-        public static final int goal_content=0x7f0a0004;
+        public static final int archive_return_btn=0x7f0a0007;
+        public static final int confirm_btn=0x7f0a0009;
+        public static final int dummyView=0x7f0a0004;
+        public static final int goal_content=0x7f0a0005;
         public static final int goal_list=0x7f0a0003;
         public static final int goal_list_item_ctn=0x01010001;
         public static final int goal_list_item_date=0x01010000;
-        public static final int home_guesture_view=0x7f0a000d;
-        public static final int hw_view=0x7f0a0007;
-        public static final int layout_home=0x7f0a0009;
-        public static final int morning_time=0x7f0a0018;
+        public static final int home_guesture_view=0x7f0a000e;
+        public static final int hour=0x7f0a001d;
+        public static final int hour_container=0x7f0a0020;
+        public static final int hour_display=0x7f0a0022;
+        public static final int hour_minus=0x7f0a0023;
+        public static final int hour_plus=0x7f0a0021;
+        public static final int hw_view=0x7f0a0008;
+        public static final int layout_home=0x7f0a000a;
+        public static final int min_container=0x7f0a0024;
+        public static final int min_display=0x7f0a0026;
+        public static final int min_minus=0x7f0a0027;
+        public static final int min_plus=0x7f0a0025;
+        public static final int minute=0x7f0a001e;
+        public static final int morning_time=0x7f0a0019;
         public static final int nav_bar_layout=0x7f0a0001;
-        public static final int save_layout=0x7f0a0014;
-        public static final int save_setting=0x7f0a001b;
-        public static final int setting_btn=0x7f0a000b;
-        public static final int setting_gesture_ov=0x7f0a0015;
-        public static final int textView1=0x7f0a0017;
-        public static final int textView2=0x7f0a0019;
-        public static final int textView3=0x7f0a0012;
-        public static final int today_date_tv=0x7f0a000f;
-        public static final int today_day_tv=0x7f0a0010;
-        public static final int today_goal_cb=0x7f0a0011;
+        public static final int save_layout=0x7f0a0015;
+        public static final int save_setting=0x7f0a001c;
+        public static final int setting_btn=0x7f0a000c;
+        public static final int setting_gesture_ov=0x7f0a0016;
+        public static final int setting_rtn_btn=0x7f0a0014;
+        public static final int textView1=0x7f0a0018;
+        public static final int textView2=0x7f0a001a;
+        public static final int textView3=0x7f0a0013;
+        public static final int today_date_tv=0x7f0a0010;
+        public static final int today_day_tv=0x7f0a0011;
+        public static final int today_goal_cb=0x7f0a0012;
     }
     public static final class layout {
         public static final int activity_archive=0x7f030000;
@@ -85,6 +106,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int activity_settings=0x7f030004;
         public static final int activity_start=0x7f030005;
         public static final int goal_list_item=0x7f030006;
+        public static final int time_picker=0x7f030007;
+        public static final int timepicker=0x7f030008;
     }
     public static final class menu {
         public static final int archive=0x7f090000;
@@ -158,12 +181,14 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #ButtonBarContainerTheme_buttonBarButtonStyle us.stupidx.dailygoal:buttonBarButtonStyle}</code></td><td></td></tr>
            <tr><td><code>{@link #ButtonBarContainerTheme_buttonBarStyle us.stupidx.dailygoal:buttonBarStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #ButtonBarContainerTheme_timePickerStyle us.stupidx.dailygoal:timePickerStyle}</code></td><td></td></tr>
            </table>
            @see #ButtonBarContainerTheme_buttonBarButtonStyle
            @see #ButtonBarContainerTheme_buttonBarStyle
+           @see #ButtonBarContainerTheme_timePickerStyle
          */
         public static final int[] ButtonBarContainerTheme = {
-            0x7f010000, 0x7f010001
+            0x7f010000, 0x7f010001, 0x7f010002
         };
         /**
           <p>This symbol is the offset where the {@link us.stupidx.dailygoal.R.attr#buttonBarButtonStyle}
@@ -185,5 +210,15 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           @attr name android:buttonBarStyle
         */
         public static final int ButtonBarContainerTheme_buttonBarStyle = 0;
+        /**
+          <p>This symbol is the offset where the {@link us.stupidx.dailygoal.R.attr#timePickerStyle}
+          attribute's value can be found in the {@link #ButtonBarContainerTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:timePickerStyle
+        */
+        public static final int ButtonBarContainerTheme_timePickerStyle = 2;
     };
 }
