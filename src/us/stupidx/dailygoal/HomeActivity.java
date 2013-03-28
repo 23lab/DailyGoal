@@ -8,8 +8,12 @@ import us.stupidx.config.Config;
 import us.stupidx.config.DailyGoal_tbl;
 import us.stupidx.db.GoalOpenHelper;
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
 import android.gesture.GestureOverlayView;
 import android.os.Bundle;
@@ -34,9 +38,15 @@ public class HomeActivity extends Activity {
 		SharedPreferences settings = this.getSharedPreferences(
 				Config.PREFS_NAME, 0);
 
-		Toast.makeText(this,
-				settings.getString(Config.MORNING_TIME, "no morning time"),
-				Toast.LENGTH_LONG).show();
+		// 如果app还未设置时间
+		if (settings.getString(Config.MORNING_TIME, "").equals("")) {
+			Editor editSetting = settings.edit();
+			editSetting.putString(Config.MORNING_TIME,
+					Config.DEFAULT_MORNING_TIME);
+			editSetting.putString(Config.AFTERNOON_TIME,
+					Config.DEFAULT_AFTERNOON_TIME);
+			editSetting.commit();
+		}
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日", Locale.CHINA);
 		Date today = new Date();
@@ -85,6 +95,20 @@ public class HomeActivity extends Activity {
 								R.anim.push_right_in, R.anim.push_right_out);
 					}
 				});
+
+		// 设置闹铃
+		this.setAlarmTime(this, 1000);
+
+	}
+
+	private void setAlarmTime(Context context, long timeInMillis) {
+		AlarmManager am = (AlarmManager) context
+				.getSystemService(Context.ALARM_SERVICE);
+		Intent intent = new Intent(Config.ALARM_ACTION);
+		PendingIntent sender = PendingIntent.getBroadcast(context, 0, intent,
+				PendingIntent.FLAG_CANCEL_CURRENT);
+		int interval = 60 * 1000;// 闹铃间隔， 这里设为1分钟闹一次，在第2步我们将每隔1分钟收到一次广播]
+		am.setRepeating(AlarmManager.RTC_WAKEUP, timeInMillis, interval, sender);
 	}
 
 	@Override

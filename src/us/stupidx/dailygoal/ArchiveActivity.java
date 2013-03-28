@@ -1,8 +1,10 @@
 package us.stupidx.dailygoal;
 
+import us.stupidx.config.Config;
 import us.stupidx.config.DailyGoal_tbl;
 import us.stupidx.db.GoalOpenHelper;
 import android.app.Activity;
+import android.app.NotificationManager;
 import android.database.Cursor;
 import android.gesture.GestureOverlayView;
 import android.os.Bundle;
@@ -54,26 +56,30 @@ public class ArchiveActivity extends Activity {
 
 		GestureOverlayView gov = (GestureOverlayView) findViewById(R.id.archive_gesture_ov);
 		gov.setGestureVisible(true);
-		gov.addOnGestureListener(new NavGestureListener(this,
-				null, HomeActivity.class));
-		
+		gov.addOnGestureListener(new NavGestureListener(this, null,
+				HomeActivity.class));
+
 		Button rtnBtn = (Button) findViewById(R.id.archive_return_btn);
-		
+
 		rtnBtn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				ArchiveActivity.this.finish();
-				ArchiveActivity.this.overridePendingTransition(R.anim.push_left_in,
-						R.anim.push_left_out);
+				ArchiveActivity.this.overridePendingTransition(
+						R.anim.push_left_in, R.anim.push_left_out);
 			}
 		});
+
+		NotificationManager mNotificationManager = (NotificationManager) this
+				.getSystemService(Activity.NOTIFICATION_SERVICE);
+		mNotificationManager.cancel(Config.NTF_ID);
 	}
-	
+
 	@Override
 	public void onBackPressed() {
-	    super.onBackPressed();
-	    this.finish();
-	    overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+		super.onBackPressed();
+		this.finish();
+		overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
 	}
 
 	// Ìí¼Ó°´Å¥µÄ¼àÌý
@@ -82,15 +88,11 @@ public class ArchiveActivity extends Activity {
 		public void onClick(View v) {
 			Cursor cursor = openHelper.readCurrentGoal();
 			if (cursor.getCount() > 0) {
-				Log.i("cursor.getCount()", "" + cursor.getCount());
-				// update
-				int updatedCount = openHelper.updateCurrentGoal(etGoalContent
+				openHelper.updateCurrentGoal(etGoalContent
 						.getText().toString());
-				Log.i("updatedCount", "" + updatedCount);
 			} else {
-				Long insertedId = openHelper.insertCurrentGoal(etGoalContent
+				openHelper.insertCurrentGoal(etGoalContent
 						.getText().toString());
-				Log.i("insertedId", "" + insertedId);
 			}
 			ArchiveActivity.this.fillGoalList();
 		}

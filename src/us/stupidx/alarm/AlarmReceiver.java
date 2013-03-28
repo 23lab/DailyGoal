@@ -1,9 +1,14 @@
 package us.stupidx.alarm;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
+import us.stupidx.config.Config;
+import us.stupidx.config.DailyGoal_tbl;
 import us.stupidx.dailygoal.ArchiveActivity;
 import us.stupidx.dailygoal.R;
+import us.stupidx.db.GoalOpenHelper;
 import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -11,15 +16,17 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationCompat.Builder;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.util.Log;
 import android.widget.Toast;
 
 public class AlarmReceiver extends BroadcastReceiver {
 	private NotificationManager mNotificationManager;
+	private GoalOpenHelper openHelper;
 
 	public void onReceive(Context context, Intent intent) {
-		if ("android.alarm.demo.action".equals(intent.getAction())) {
+		if (Config.ALARM_ACTION.equals(intent.getAction())) {
 			// 第1步中设置的闹铃时间到，这里可以弹出闹铃提示并播放响铃
 			// 可以继续设置下一次闹铃时间;
 			Toast.makeText(context, new Date().getTime() + "",
@@ -34,20 +41,85 @@ public class AlarmReceiver extends BroadcastReceiver {
 					R.drawable.ic_launcher, "Notification",
 					System.currentTimeMillis());
 
-			Intent archiveIntent = new Intent(context, ArchiveActivity.class);
-			intent.putExtra("from_ntf", true);
-			// 当单击下拉下来的标题内容时候做什么，这里是跳转到主界面。这里和下面是一起的。
-			PendingIntent contentIntent = PendingIntent.getActivity(context, 0,
-					archiveIntent, 0);
+			openHelper = new GoalOpenHelper(context);
+			Cursor cursor = openHelper.readCurrentGoal();
+			if (cursor.getCount() == 0 && isSetGoalTime(context)) {
+				// 今天还没有设置目标
+				Intent archiveIntent = new Intent(context,
+						ArchiveActivity.class);
+				intent.putExtra("from_ntf", true);
+				// 当单击下拉下来的标题内容时候做什么，这里是跳转到主界面。这里和下面是一起的。
+				PendingIntent contentIntent = PendingIntent.getActivity(
+						context, 0, archiveIntent, 0);
 
-			// Title 是拉下来的标题，Content也是下拉后的内容显示
-			notification.setLatestEventInfo(context, "NTF Title",
-					"NTF Content", contentIntent);
+				// Title 是拉下来的标题，Content也是下拉后的内容显示
+				notification.setLatestEventInfo(context, "还没设定今天的目标哦",
+						"不论大小每天为自己设定一个小目标, 贵在坚持", contentIntent);
 
-			// 显示这个通知
-			mNotificationManager.notify(NOTIFICATIONS_ID, notification);
+				// 显示这个通知
+				mNotificationManager.notify(Config.NTF_ID, notification);
+			} else if (cursor.getCount() == 1 && isReviewTime(context)
+					&& isTodayFinish()) {
+				// 已经设置了目标, 但是还没有完成
+				Intent archiveIntent = new Intent(context,
+						ArchiveActivity.class);
+				intent.putExtra("from_ntf", true);
+				// 当单击下拉下来的标题内容时候做什么，这里是跳转到主界面。这里和下面是一起的。
+				PendingIntent contentIntent = PendingIntent.getActivity(
+						context, 0, archiveIntent, 0);
+
+				// Title 是拉下来的标题，Content也是下拉后的内容显示
+				notification.setLatestEventInfo(context, "设定的目标今天完成没有啊?",
+						"每天完成以后养成回顾的习惯", contentIntent);
+
+				// 显示这个通知
+				mNotificationManager.notify(Config.NTF_ID, notification);
+			}
 		}
 	}
 
-	private static int NOTIFICATIONS_ID = 1; // 当前页面的布局
+	private boolean isTodayFinish() {
+		Cursor cursor = openHelper.readCurrentGoal();
+		if (cursor.getCount() != 0) {
+			cursor.moveToFirst();
+			String isFinish = cursor.getString(cursor
+					.getColumnIndex(DailyGoal_tbl.GoalColumn.COL_FINISH_AT));
+			return isFinish == null ? false : true;
+		}
+
+		return false;
+	}
+
+	private boolean isReviewTime(Context context) {
+		SharedPreferences settings = context.getSharedPreferences(
+				Config.PREFS_NAME, 0);
+
+		String mTime = settings.getString(Config.MORNING_TIME,
+				Config.DEFAULT_MORNING_TIME);
+		SimpleDateFormat sdf = new SimpleDateFormat("H:m", Locale.CHINA);
+		Date today = new Date();
+		if (sdf.format(today).equals(mTime)) {
+			Log.i("isReviewTime", sdf.format(today) + " true");
+			return true;
+		} else {
+			Log.i("isReviewTime", sdf.format(today) + " true");
+			return false;
+		}
+	}
+
+	private boolean isSetGoalTime(Context context) {
+		SharedPreferences settings = context.getSharedPreferences(
+				Config.PREFS_NAME, 0);
+		String aTime = settings.getString(Config.AFTERNOON_TIME,
+				Config.DEFAULT_AFTERNOON_TIME);
+		SimpleDateFormat sdf = new SimpleDateFormat("H:m", Locale.CHINA);
+		Date today = new Date();
+		if (sdf.format(today).equals(aTime)) {
+			Log.i("isReviewTime", sdf.format(today) + " true");
+			return true;
+		} else {
+			Log.i("isReviewTime", sdf.format(today) + " true");
+			return false;
+		}
+	}
 }
