@@ -140,5 +140,12 @@ public class SettingsActivity extends Activity {
 		getMenuInflater().inflate(R.menu.settings, menu);
 		return true;
 	}
+	
+	@Override
+	public void onBackPressed() {
+	    super.onBackPressed();
+	    this.finish();
+	    overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
+	}
 
 }

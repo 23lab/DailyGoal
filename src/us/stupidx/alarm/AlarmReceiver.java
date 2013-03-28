@@ -34,9 +34,11 @@ public class AlarmReceiver extends BroadcastReceiver {
 					R.drawable.ic_launcher, "Notification",
 					System.currentTimeMillis());
 
+			Intent archiveIntent = new Intent(context, ArchiveActivity.class);
+			intent.putExtra("from_ntf", true);
 			// 当单击下拉下来的标题内容时候做什么，这里是跳转到主界面。这里和下面是一起的。
 			PendingIntent contentIntent = PendingIntent.getActivity(context, 0,
-					new Intent(context, ArchiveActivity.class), 0);
+					archiveIntent, 0);
 
 			// Title 是拉下来的标题，Content也是下拉后的内容显示
 			notification.setLatestEventInfo(context, "NTF Title",
