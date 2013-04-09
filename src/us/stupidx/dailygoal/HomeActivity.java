@@ -27,8 +27,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class HomeActivity extends Activity {
-	GoalOpenHelper openHelper;
+	private GoalOpenHelper openHelper;
 	private CheckBox cbTodayGoal;
+
+	private char[] week = { '日', '一', '二', '三', '四', '五', '六' };
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +55,7 @@ public class HomeActivity extends Activity {
 		((TextView) findViewById(R.id.today_date_tv))
 				.setText(sdf.format(today));
 		((TextView) findViewById(R.id.today_day_tv)).setText("星期"
-				+ today.getDay());
+				+ week[today.getDay()]);
 
 		cbTodayGoal = (CheckBox) findViewById(R.id.today_goal_cb);
 		cbTodayGoal.setOnCheckedChangeListener(new OnCheckedChangeListener() {

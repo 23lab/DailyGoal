@@ -13,6 +13,11 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_archive">ArchiveActivity</string>
     <string name="title_activity_settings">SettingsActivity</string>
-    <string name="today_s_goal">"您今日要完成的目标为: "</string>
-
+    <string name="today_s_goal">您今日要完成的目标为: </string>
+    
+    <string name="no_goal_today">还没设定今天的目标哦~</string>
+    <string name="ask_user_to_set_goal">不论大小每天为自己设定一个小目标, 贵在坚持</string>
+    
+    <string name="is_goal_finish">设定的目标今天完成没有啊?</string>
+    <string name="ask_user_review">每天完成以后养成回顾的习惯</string>
 </resources>

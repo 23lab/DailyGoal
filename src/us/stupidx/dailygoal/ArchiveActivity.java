@@ -8,7 +8,6 @@ import android.app.NotificationManager;
 import android.database.Cursor;
 import android.gesture.GestureOverlayView;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -72,7 +71,7 @@ public class ArchiveActivity extends Activity {
 
 		NotificationManager mNotificationManager = (NotificationManager) this
 				.getSystemService(Activity.NOTIFICATION_SERVICE);
-		mNotificationManager.cancel(Config.NTF_ID);
+		mNotificationManager.cancel(Config.NTF_SETGOAL_ID);
 	}
 
 	@Override

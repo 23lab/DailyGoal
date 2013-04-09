@@ -41,14 +41,12 @@
         <activity
             android:name="us.stupidx.dailygoal.GoalAddActivity"
             android:label="@string/title_activity_goal_add"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="us.stupidx.dailygoal.StartActivity"
             android:label="@string/title_activity_start"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -58,20 +56,17 @@
         <activity
             android:name="us.stupidx.dailygoal.HomeActivity"
             android:label="@string/title_activity_home"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="us.stupidx.dailygoal.ArchiveActivity"
             android:label="@string/title_activity_archive"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="us.stupidx.dailygoal.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 
