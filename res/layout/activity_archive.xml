@@ -83,6 +83,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
+            style="@style/DGButtonStyle"
+            android:drawableRight="@drawable/ic_launcher"
             android:text="Return" />
     </RelativeLayout>
 

@@ -1,25 +1,35 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
-
-    <TextView
-        android:id="@+android:id/goal_list_item_date"
-        android:layout_width="match_parent"
-        android:layout_height="?android:attr/listPreferredItemHeight"
-        android:gravity="center_vertical"
-        android:paddingLeft="5dip"
-        android:singleLine="true"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
 
     <TextView
         android:id="@+android:id/goal_list_item_ctn"
-        android:layout_width="match_parent"
-        android:layout_height="?android:attr/listPreferredItemHeight"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+android:id/goal_list_item_date"
-        android:gravity="center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/imageView1"
         android:paddingLeft="5dip"
         android:singleLine="true"
+        android:text="xxxxxxxxxxxxxxxxxxxxxxxx"
         android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="30sp"
+        android:layout_height="30sp"
+        android:layout_marginRight="10sp"
+        android:layout_above="@+android:id/goal_list_item_date"
+        android:src="@drawable/done" />
+
+    <TextView
+        android:id="@+android:id/goal_list_item_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+android:id/goal_list_item_ctn"
+        android:singleLine="true"
+        android:text="2012-12-12"
+        android:textSize="12sp" />
 
 </RelativeLayout>

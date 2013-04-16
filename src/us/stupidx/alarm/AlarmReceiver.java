@@ -102,7 +102,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 				Config.DEFAULT_AFTERNOON_TIME);
 		SimpleDateFormat sdf = new SimpleDateFormat("H:m", Locale.CHINA);
 		Date today = new Date();
-		if (sdf.format(today).equals(mTime)) {
+		if (sdf.format(today).compareTo(mTime) > 0) {
 			Log.i("isReviewTime", sdf.format(today) + " ==? " + mTime + " true");
 			return true;
 		} else {
@@ -120,7 +120,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 		SimpleDateFormat sdf = new SimpleDateFormat("H:m", Locale.CHINA);
 		Date today = new Date();
 		Log.i("sdf.format(today): ", sdf.format(today));
-		if (sdf.format(today).equals(aTime)) {
+		if (sdf.format(today).compareTo(aTime) > 0) {
 			Log.i("isSetGoalTime", sdf.format(today) + " true");
 			return true;
 		} else {
