@@ -17,7 +17,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class GoalOpenHelper extends SQLiteOpenHelper {
 	private static final int DATABASE_VERSION = 5;
 
-	private SQLiteDatabase db = null;
+	private SQLiteDatabase db;
 
 	private static final String GOAL_TABLE_CREATE = "CREATE TABLE "
 			+ DailyGoal_tbl.TBL_NAME + " (" + DailyGoal_tbl.GoalColumn._ID

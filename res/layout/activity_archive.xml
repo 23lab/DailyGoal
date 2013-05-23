@@ -76,14 +76,16 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true" >
-
+        
         <Button
             android:id="@+id/archive_return_btn"
+            style="@style/DGButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:text="Return" />
+            android:drawableRight="@drawable/ret_right"
+            android:text="返回" />
     </RelativeLayout>
 
 </RelativeLayout>

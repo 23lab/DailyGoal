@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:drawableLeft="@drawable/return_left"
+            android:drawableLeft="@drawable/ret_left"
             android:text="返回主页"
             android:textColor="#fff"
             android:textSize="16sp" />

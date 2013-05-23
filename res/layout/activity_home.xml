@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:drawableRight="@drawable/ic_launcher"
+            android:drawableRight="@drawable/ret_right"
             android:text="设置" />
 
         <Button
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:drawableLeft="@drawable/return_left"
+            android:drawableLeft="@drawable/ret_left"
             android:text="归档" />
 
     </RelativeLayout>
