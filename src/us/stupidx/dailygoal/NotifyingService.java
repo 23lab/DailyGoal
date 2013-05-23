@@ -15,7 +15,6 @@ import android.os.RemoteException;
 import android.util.Log;
 import android.widget.Toast;
 
-
 public class NotifyingService extends Service {
 	private NotificationManager mNM;
 	private ConditionVariable mCondition;
@@ -23,8 +22,8 @@ public class NotifyingService extends Service {
 
 	private final IBinder mBinder = new Binder() {
 		@Override
-		protected boolean onTransact(int code, Parcel data, Parcel reply,
-				int flags) throws RemoteException {
+		protected boolean onTransact(int code, Parcel data, Parcel reply, int flags)
+				throws RemoteException {
 			return super.onTransact(code, data, reply, flags);
 		}
 	};
@@ -65,7 +64,7 @@ public class NotifyingService extends Service {
 			// NotifyingService.this.stopSelf();
 		}
 	};
-	
+
 	void showToast() {
 		// show the toast
 		Toast toast = new Toast(this);
@@ -83,14 +82,12 @@ public class NotifyingService extends Service {
 	protected void showNotification(int moodId, int textId) {
 		CharSequence text = getText(textId);
 
-		Notification notification = new Notification(moodId, null,
-				System.currentTimeMillis());
+		Notification notification = new Notification(moodId, null, System.currentTimeMillis());
 
-		PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
-				new Intent(this, GoalAddActivity.class), 0);
-		
-		notification.setLatestEventInfo(this, getText(R.string.app_name), text,
-				contentIntent);
+		PendingIntent contentIntent = PendingIntent.getActivity(this, 0, new Intent(this,
+				GoalAddActivity.class), 0);
+
+		notification.setLatestEventInfo(this, getText(R.string.app_name), text, contentIntent);
 
 		mNM.notify(MOOD_NOTIFICATIONS, notification);
 	}

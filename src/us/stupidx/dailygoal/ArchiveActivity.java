@@ -3,6 +3,7 @@ package us.stupidx.dailygoal;
 import us.stupidx.config.Config;
 import us.stupidx.config.DailyGoal_tbl;
 import us.stupidx.db.GoalOpenHelper;
+import us.stupidx.util.CT;
 import android.app.Activity;
 import android.app.NotificationManager;
 import android.database.Cursor;
@@ -21,51 +22,31 @@ public class ArchiveActivity extends Activity {
 	private ListView goalList;
 	private GoalOpenHelper openHelper;
 	private Cursor goalListCursor;
-
-	private void fillGoalList() {
-		String[] dataColumns = { DailyGoal_tbl.GoalColumn.COL_DATE,
-				DailyGoal_tbl.GoalColumn.COL_CTN };
-
-		int[] viewIDs = { R.id.goal_list_item_date, R.id.goal_list_item_ctn };
-
-		// 从数据库读取所有goals
-		goalListCursor = openHelper.readAll();
-		@SuppressWarnings("deprecation")
-		SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
-				R.layout.goal_list_item, // Points to the XML for a list item
-				goalListCursor, // The cursor to get items from
-				dataColumns, viewIDs);
-		// Sets the ListView's adapter to be the cursor adapter that was just
-		// created.
-		goalList = (ListView) findViewById(R.id.goal_list);
-		goalList.setAdapter(adapter);
-	}
+	private Button rtnBtn;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_archive);
 		openHelper = new GoalOpenHelper(this);
-		etGoalContent = (EditText) findViewById(R.id.goal_content);
+		//etGoalContent = (EditText) findViewById(R.id.goal_content);
 
 		this.fillGoalList();
 
-		findViewById(R.id.add_goal_btn).setOnClickListener(
-				new AddGoalListener());
+		//findViewById(R.id.add_goal_btn).setOnClickListener(new AddGoalListener());
 
 		GestureOverlayView gov = (GestureOverlayView) findViewById(R.id.archive_gesture_ov);
 		gov.setGestureVisible(true);
-		gov.addOnGestureListener(new NavGestureListener(this, null,
-				HomeActivity.class));
+		gov.addOnGestureListener(new NavGestureListener(this, null, HomeActivity.class));
 
-		Button rtnBtn = (Button) findViewById(R.id.archive_return_btn);
+		rtnBtn = (Button) findViewById(R.id.archive_return_btn);
 
 		rtnBtn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				ArchiveActivity.this.finish();
-				ArchiveActivity.this.overridePendingTransition(
-						R.anim.push_left_in, R.anim.push_left_out);
+				ArchiveActivity.this.overridePendingTransition(R.anim.push_left_in,
+						R.anim.push_left_out);
 			}
 		});
 
@@ -81,17 +62,32 @@ public class ArchiveActivity extends Activity {
 		overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
 	}
 
+	private void fillGoalList() {
+		String[] dataColumns = { DailyGoal_tbl.GoalColumn.COL_DATE,
+				DailyGoal_tbl.GoalColumn.COL_CTN };
+
+		int[] viewIDs = { R.id.goal_list_item_date, R.id.goal_list_item_ctn };
+
+		// 从数据库读取所有goals
+		goalListCursor = openHelper.readAll();
+		@SuppressWarnings("deprecation")
+		SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.goal_list_item,
+				goalListCursor, dataColumns, viewIDs);
+		// Sets the ListView's adapter to be the cursor adapter that was just
+		// created.
+		goalList = (ListView) findViewById(R.id.goal_list);
+		goalList.setAdapter(adapter);
+	}
+
 	// 添加按钮的监听
 	private class AddGoalListener implements OnClickListener {
 		@Override
 		public void onClick(View v) {
 			Cursor cursor = openHelper.readCurrentGoal();
-			if (cursor.getCount() > 0) {
-				openHelper.updateCurrentGoal(etGoalContent
-						.getText().toString());
-			} else {
-				openHelper.insertCurrentGoal(etGoalContent
-						.getText().toString());
+			if (cursor.getCount() > 0 && CT.notEmpty(etGoalContent.getText().toString())) {
+				openHelper.updateCurrentGoal(etGoalContent.getText().toString());
+			} else if (CT.notEmpty(etGoalContent.getText().toString())) {
+				openHelper.insertCurrentGoal(etGoalContent.getText().toString());
 			}
 			ArchiveActivity.this.fillGoalList();
 		}
@@ -102,7 +98,7 @@ public class ArchiveActivity extends Activity {
 		super.onPause();
 		openHelper.close();
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

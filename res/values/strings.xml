@@ -20,4 +20,7 @@
     
     <string name="is_goal_finish">设定的目标今天完成没有啊?</string>
     <string name="ask_user_review">每天完成以后养成回顾的习惯</string>
+    
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
 </resources>

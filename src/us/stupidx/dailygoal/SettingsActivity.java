@@ -36,14 +36,14 @@ public class SettingsActivity extends Activity {
 			public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
 				int hour = mTp.getCurrentHour();
 				if (hour == 23) {
-					Toast.makeText(SettingsActivity.this, "目标设定时间必须在0-11点之间",
-							Toast.LENGTH_SHORT).show();
+					Toast.makeText(SettingsActivity.this, "目标设定时间必须在0-11点之间", Toast.LENGTH_SHORT)
+							.show();
 					mTp.setCurrentHour(0);
 				}
 
 				if (hour == 11) {
-					Toast.makeText(SettingsActivity.this, "目标设定时间必须在0-11点之间",
-							Toast.LENGTH_SHORT).show();
+					Toast.makeText(SettingsActivity.this, "目标设定时间必须在0-11点之间", Toast.LENGTH_SHORT)
+							.show();
 					mTp.setCurrentHour(10);
 				}
 			}
@@ -53,14 +53,14 @@ public class SettingsActivity extends Activity {
 			@Override
 			public void onTimeChanged(TimePicker view, int hour, int minute) {
 				if (hour == 16) {
-					Toast.makeText(SettingsActivity.this, "目标完成时间必须在17-0点之间",
-							Toast.LENGTH_SHORT).show();
+					Toast.makeText(SettingsActivity.this, "目标完成时间必须在17-0点之间", Toast.LENGTH_SHORT)
+							.show();
 					aTp.setCurrentHour(17);
 				}
 
 				if (hour == 0) {
-					Toast.makeText(SettingsActivity.this, "目标完成时间必须在19-0点之间",
-							Toast.LENGTH_SHORT).show();
+					Toast.makeText(SettingsActivity.this, "目标完成时间必须在19-0点之间", Toast.LENGTH_SHORT)
+							.show();
 					aTp.setCurrentHour(23);
 				}
 
@@ -72,36 +72,31 @@ public class SettingsActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				if (SettingsActivity.this.saveSettings()) {
-					Toast.makeText(SettingsActivity.this, "设置保存成功",
-							Toast.LENGTH_LONG).show();
+					Toast.makeText(SettingsActivity.this, "设置保存成功", Toast.LENGTH_LONG).show();
 				} else {
-					Toast.makeText(SettingsActivity.this, "设置保存失败",
-							Toast.LENGTH_LONG).show();
+					Toast.makeText(SettingsActivity.this, "设置保存失败", Toast.LENGTH_LONG).show();
 				}
 			}
 		});
 
-		findViewById(R.id.setting_rtn_btn).setOnClickListener(
-				new OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						SettingsActivity.this.startActivity(new Intent(
-								SettingsActivity.this, HomeActivity.class));
-						SettingsActivity.this.overridePendingTransition(
-								R.anim.push_right_in, R.anim.push_right_out);
-					}
-				});
+		findViewById(R.id.setting_rtn_btn).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				SettingsActivity.this.startActivity(new Intent(SettingsActivity.this,
+						HomeActivity.class));
+				SettingsActivity.this.overridePendingTransition(R.anim.push_right_in,
+						R.anim.push_right_out);
+			}
+		});
 
 		GestureOverlayView gov = (GestureOverlayView) findViewById(R.id.setting_gesture_ov);
 		gov.setGestureVisible(true);
-		gov.addOnGestureListener(new NavGestureListener(this,
-				HomeActivity.class, null));
+		gov.addOnGestureListener(new NavGestureListener(this, HomeActivity.class, null));
 
 	}
 
 	private void fillCurrentSetting() {
-		SharedPreferences settings = this.getSharedPreferences(
-				Config.PREFS_NAME, 0);
+		SharedPreferences settings = this.getSharedPreferences(Config.PREFS_NAME, 0);
 		String morningTime = settings.getString(Config.MORNING_TIME, null);
 		if (morningTime != null) {
 			String[] time = morningTime.split(":");
@@ -134,8 +129,7 @@ public class SettingsActivity extends Activity {
 		String afternoonTime = afternoonTimePicker.getCurrentHour() + ":"
 				+ afternoonTimePicker.getCurrentMinute();
 
-		SharedPreferences settings = getSharedPreferences(Config.PREFS_NAME,
-				MODE_WORLD_WRITEABLE);
+		SharedPreferences settings = getSharedPreferences(Config.PREFS_NAME, MODE_WORLD_WRITEABLE);
 
 		Editor editor = settings.edit();
 		editor.putString(Config.MORNING_TIME, morningTime);

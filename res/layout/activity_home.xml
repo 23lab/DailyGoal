@@ -96,7 +96,7 @@
                     android:layout_above="@+id/analogClock1"
                     android:layout_alignParentLeft="true"
                     android:layout_marginBottom="88dp"
-                    android:text="未设定目标,点击设置" />
+                    android:text="" />
 
                 <TextView
                     android:id="@+id/textView3"

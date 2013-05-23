@@ -36,45 +36,37 @@ public class AlarmReceiver extends BroadcastReceiver {
 					.getSystemService(Activity.NOTIFICATION_SERVICE); // 初始化管理器
 
 			// 建立一个通知实例，第一个参数是图片，第二个标题栏上显示的文字，第三个是时间
-			Notification notification = new Notification(
-					R.drawable.ic_launcher, "Notification",
+			Notification notification = new Notification(R.drawable.ic_launcher, "Notification",
 					System.currentTimeMillis());
 
 			openHelper = new GoalOpenHelper(context);
 			Cursor cursor = openHelper.readCurrentGoal();
 			if (cursor.getCount() == 0 && isSetGoalTime(context)) {
 				// 今天还没有设置目标
-				Intent archiveIntent = new Intent(context,
-						ArchiveActivity.class);
+				Intent archiveIntent = new Intent(context, ArchiveActivity.class);
 				intent.putExtra("from_ntf", true);
 				// 当单击下拉下来的标题内容时候做什么，这里是跳转到主界面。这里和下面是一起的。
-				PendingIntent contentIntent = PendingIntent.getActivity(
-						context, 0, archiveIntent, 0);
+				PendingIntent contentIntent = PendingIntent.getActivity(context, 0, archiveIntent,
+						0);
 
 				// Title 是拉下来的标题，Content也是下拉后的内容显示
-				notification.setLatestEventInfo(context,
-						context.getString(R.string.no_goal_today),
-						context.getString(R.string.ask_user_to_set_goal),
-						contentIntent);
+				notification.setLatestEventInfo(context, context.getString(R.string.no_goal_today),
+						context.getString(R.string.ask_user_to_set_goal), contentIntent);
 
 				// 显示这个通知
-				mNotificationManager
-						.notify(Config.NTF_SETGOAL_ID, notification);
-			} else if (cursor.getCount() == 1 && isReviewTime(context)
-					&& isTodayFinish()) {
+				mNotificationManager.notify(Config.NTF_SETGOAL_ID, notification);
+			} else if (cursor.getCount() == 1 && isReviewTime(context) && isTodayFinish()) {
 				// 已经设置了目标, 但是还没有完成
-				Intent archiveIntent = new Intent(context,
-						ArchiveActivity.class);
+				Intent archiveIntent = new Intent(context, ArchiveActivity.class);
 				intent.putExtra("from_ntf", true);
 				// 当单击下拉下来的标题内容时候做什么，这里是跳转到主界面。这里和下面是一起的。
-				PendingIntent contentIntent = PendingIntent.getActivity(
-						context, 0, archiveIntent, 0);
+				PendingIntent contentIntent = PendingIntent.getActivity(context, 0, archiveIntent,
+						0);
 
 				// Title 是拉下来的标题，Content也是下拉后的内容显示
 				notification.setLatestEventInfo(context,
 						context.getString(R.string.is_goal_finish),
-						context.getString(R.string.ask_user_review),
-						contentIntent);
+						context.getString(R.string.ask_user_review), contentIntent);
 
 				// 显示这个通知
 				mNotificationManager.notify(Config.NTF_REVIEW_ID, notification);
@@ -95,28 +87,23 @@ public class AlarmReceiver extends BroadcastReceiver {
 	}
 
 	private boolean isReviewTime(Context context) {
-		SharedPreferences settings = context.getSharedPreferences(
-				Config.PREFS_NAME, 0);
+		SharedPreferences settings = context.getSharedPreferences(Config.PREFS_NAME, 0);
 
-		String mTime = settings.getString(Config.AFTERNOON_TIME,
-				Config.DEFAULT_AFTERNOON_TIME);
+		String mTime = settings.getString(Config.AFTERNOON_TIME, Config.DEFAULT_AFTERNOON_TIME);
 		SimpleDateFormat sdf = new SimpleDateFormat("H:m", Locale.CHINA);
 		Date today = new Date();
 		if (sdf.format(today).equals(mTime)) {
 			Log.d("isReviewTime", sdf.format(today) + " ==? " + mTime + " true");
 			return true;
 		} else {
-			Log.d("isReviewTime", sdf.format(today) + " ==? " + mTime
-					+ " false");
+			Log.d("isReviewTime", sdf.format(today) + " ==? " + mTime + " false");
 			return false;
 		}
 	}
 
 	private boolean isSetGoalTime(Context context) {
-		SharedPreferences settings = context.getSharedPreferences(
-				Config.PREFS_NAME, 0);
-		String aTime = settings.getString(Config.MORNING_TIME,
-				Config.DEFAULT_MORNING_TIME);
+		SharedPreferences settings = context.getSharedPreferences(Config.PREFS_NAME, 0);
+		String aTime = settings.getString(Config.MORNING_TIME, Config.DEFAULT_MORNING_TIME);
 		SimpleDateFormat sdf = new SimpleDateFormat("H:m", Locale.CHINA);
 		Date today = new Date();
 		Log.i("sdf.format(today): ", sdf.format(today));

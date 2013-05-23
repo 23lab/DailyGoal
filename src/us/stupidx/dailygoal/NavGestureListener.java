@@ -29,12 +29,10 @@ public class NavGestureListener implements OnGestureListener {
 	}
 
 	@Override
-	public void onGesture(GestureOverlayView arg0, MotionEvent arg1) {
-	}
+	public void onGesture(GestureOverlayView arg0, MotionEvent arg1) {}
 
 	@Override
-	public void onGestureCancelled(GestureOverlayView arg0, MotionEvent arg1) {
-	}
+	public void onGestureCancelled(GestureOverlayView arg0, MotionEvent arg1) {}
 
 	@Override
 	public void onGestureEnded(GestureOverlayView arg0, MotionEvent arg1) {
@@ -68,11 +66,9 @@ public class NavGestureListener implements OnGestureListener {
 		}
 
 		if (Direction.LEFT.equals(d)) {
-			this.act.overridePendingTransition(R.anim.push_right_in,
-					R.anim.push_right_out);
+			this.act.overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
 		} else if (Direction.RIGHT.equals(d)) {
-			this.act.overridePendingTransition(R.anim.push_left_in,
-					R.anim.push_left_out);
+			this.act.overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
 		}
 	}
 

@@ -31,14 +31,12 @@ public class GoalProvider extends ContentProvider {
 		sNotesProjectionMap = new HashMap<String, String>();
 
 		// Maps the string "_ID" to the column name "_ID"
-		sNotesProjectionMap.put(DailyGoal_tbl.GoalColumn._ID,
-				DailyGoal_tbl.GoalColumn._ID);
+		sNotesProjectionMap.put(DailyGoal_tbl.GoalColumn._ID, DailyGoal_tbl.GoalColumn._ID);
 		// Maps "g_date" to "g_date"
 		sNotesProjectionMap.put(DailyGoal_tbl.GoalColumn.COL_DATE,
 				DailyGoal_tbl.GoalColumn.COL_DATE);
 		// Maps "note" to "note"
-		sNotesProjectionMap.put(DailyGoal_tbl.GoalColumn.COL_CTN,
-				DailyGoal_tbl.GoalColumn.COL_CTN);
+		sNotesProjectionMap.put(DailyGoal_tbl.GoalColumn.COL_CTN, DailyGoal_tbl.GoalColumn.COL_CTN);
 		// Maps "create_at" to "create_at"
 		sNotesProjectionMap.put(DailyGoal_tbl.GoalColumn.COL_CREATE_AT,
 				DailyGoal_tbl.GoalColumn.COL_CREATE_AT);
@@ -54,8 +52,8 @@ public class GoalProvider extends ContentProvider {
 	}
 
 	@Override
-	public Cursor query(Uri uri, String[] projection, String selection,
-			String[] selectionArgs, String sortOrder) {
+	public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs,
+			String sortOrder) {
 		SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
 		qb.setTables(DailyGoal_tbl.TBL_NAME);
 
@@ -66,9 +64,9 @@ public class GoalProvider extends ContentProvider {
 			break;
 
 		/*
-		 * If the incoming URI is for a single note identified by its ID,
-		 * chooses the note ID projection, and appends "_ID = <noteID>" to the
-		 * where clause, so that it selects that single note
+		 * If the incoming URI is for a single note identified by its ID, chooses the note ID
+		 * projection, and appends "_ID = <noteID>" to the where clause, so that it selects that
+		 * single note
 		 */
 		case GOAL_ID:
 			qb.setProjectionMap(sNotesProjectionMap);
@@ -76,8 +74,7 @@ public class GoalProvider extends ContentProvider {
 															// column
 					"=" +
 					// the position of the note ID itself in the incoming URI
-					uri.getPathSegments().get(
-							DailyGoal_tbl.GoalColumn.GOAL_ID_PATH_POSITION));
+					uri.getPathSegments().get(DailyGoal_tbl.GoalColumn.GOAL_ID_PATH_POSITION));
 			break;
 
 		}
@@ -132,8 +129,7 @@ public class GoalProvider extends ContentProvider {
 	}
 
 	@Override
-	public int update(Uri uri, ContentValues values, String selection,
-			String[] selectionArgs) {
+	public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
 		return 0;
 	}
 

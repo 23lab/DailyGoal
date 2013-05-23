@@ -32,12 +32,10 @@ public class StartActivity extends Activity {
 			}
 
 			@Override
-			public void onAnimationRepeat(Animation animation) {
-			}
+			public void onAnimationRepeat(Animation animation) {}
 
 			@Override
-			public void onAnimationStart(Animation animation) {
-			}
+			public void onAnimationStart(Animation animation) {}
 
 		});
 	}
