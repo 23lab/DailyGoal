@@ -119,9 +119,9 @@ public class AlarmReceiver extends BroadcastReceiver {
 				Config.DEFAULT_MORNING_TIME);
 		SimpleDateFormat sdf = new SimpleDateFormat("H:m", Locale.CHINA);
 		Date today = new Date();
-		Log.d("sdf.format(today): ", sdf.format(today));
-		if (sdf.format(today).equals(aTime)) {
-			Log.d("isSetGoalTime", sdf.format(today) + " true");
+		Log.i("sdf.format(today): ", sdf.format(today));
+		if (sdf.format(today).compareTo(aTime) > 0) {
+			Log.i("isSetGoalTime", sdf.format(today) + " true");
 			return true;
 		} else {
 			Log.d("isSetGoalTime", sdf.format(today) + " false");
