@@ -19,7 +19,6 @@ public class GoalOpenHelper extends SQLiteOpenHelper {
 	private static final int DATABASE_VERSION = 5;
 
 	private SQLiteDatabase db;
-	private static GoalOpenHelper goh = null;
 	private static final String GOAL_TABLE_CREATE = "CREATE TABLE " + DailyGoal_tbl.TBL_NAME + " ("
 			+ DailyGoal_tbl.GoalColumn._ID + " INT, " + DailyGoal_tbl.GoalColumn.COL_DATE
 			+ " TEXT, " + DailyGoal_tbl.GoalColumn.COL_CTN + " TEXT, "

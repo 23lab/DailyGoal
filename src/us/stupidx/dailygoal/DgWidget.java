@@ -1,8 +1,5 @@
 package us.stupidx.dailygoal;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -38,15 +35,11 @@ public class DgWidget extends AppWidgetProvider {
 
 		public void run() {
 
-			Date date = new Date();
-			Calendar calendar = new GregorianCalendar(2010, 06, 11);
-			long days = (((calendar.getTimeInMillis() - date.getTime()) / 1000)) / 86400;
 			GoalOpenHelper openHelper = new GoalOpenHelper(context);
 			Cursor goal = openHelper.readCurrentGoal();
-			String today_goal = "";
 			if (goal.getCount() > 0) {
 				goal.moveToFirst();
-				today_goal = goal.getString(goal.getColumnIndex(DailyGoal_tbl.GoalColumn.COL_CTN));
+				goal.getString(goal.getColumnIndex(DailyGoal_tbl.GoalColumn.COL_CTN));
 			}
 
 			// remoteViews.setTextViewText(R.id.today_goal_in_widget, today_goal);

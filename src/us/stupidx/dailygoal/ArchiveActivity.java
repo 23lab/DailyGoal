@@ -3,7 +3,6 @@ package us.stupidx.dailygoal;
 import us.stupidx.config.Config;
 import us.stupidx.config.DailyGoal_tbl;
 import us.stupidx.db.GoalOpenHelper;
-import us.stupidx.util.CT;
 import android.app.Activity;
 import android.app.NotificationManager;
 import android.database.Cursor;
@@ -13,12 +12,10 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
 public class ArchiveActivity extends Activity {
-	private EditText etGoalContent;
 	private ListView goalList;
 	private GoalOpenHelper openHelper;
 	private Cursor goalListCursor;
@@ -77,20 +74,6 @@ public class ArchiveActivity extends Activity {
 		// created.
 		goalList = (ListView) findViewById(R.id.goal_list);
 		goalList.setAdapter(adapter);
-	}
-
-	// Ìí¼Ó°´Å¥µÄ¼àÌý
-	private class AddGoalListener implements OnClickListener {
-		@Override
-		public void onClick(View v) {
-			Cursor cursor = openHelper.readCurrentGoal();
-			if (cursor.getCount() > 0 && CT.notEmpty(etGoalContent.getText().toString())) {
-				openHelper.updateCurrentGoal(etGoalContent.getText().toString());
-			} else if (CT.notEmpty(etGoalContent.getText().toString())) {
-				openHelper.insertCurrentGoal(etGoalContent.getText().toString());
-			}
-			ArchiveActivity.this.fillGoalList();
-		}
 	}
 
 	@Override

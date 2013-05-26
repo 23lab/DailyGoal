@@ -35,7 +35,6 @@
             android:layout_alignParentTop="true"
             android:drawableLeft="@drawable/ret_left"
             android:text="归档" />
-
     </RelativeLayout>
 
     <RelativeLayout
@@ -46,71 +45,60 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/RelativeLayout1" >
 
-        <android.gesture.GestureOverlayView
-            android:id="@+id/home_guesture_view"
+        <AnalogClock
+            android:id="@+id/analogClock1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/today_date_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true" >
+            android:layout_alignParentTop="true"
+            android:text="ss"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textIsSelectable="true" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true" >
+        <TextView
+            android:id="@+id/today_day_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="24dp"
+            android:layout_toRightOf="@+id/today_date_tv"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
-                <AnalogClock
-                    android:id="@+id/analogClock1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true" />
+        <CheckBox
+            android:id="@+id/today_goal_cb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/analogClock1"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="88dp"
+            android:text="" />
 
-                <TextView
-                    android:id="@+id/today_date_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:text="ss"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textIsSelectable="true" />
-
-                <TextView
-                    android:id="@+id/today_day_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginLeft="24dp"
-                    android:layout_toRightOf="@+id/today_date_tv"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
-
-                <CheckBox
-                    android:id="@+id/today_goal_cb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_above="@+id/analogClock1"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginBottom="88dp"
-                    android:text="" />
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_above="@+id/today_goal_cb"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginBottom="21dp"
-                    android:text="@string/today_s_goal"
-                    android:textAppearance="?android:attr/textAppearanceLarge" 
-                    />
-
-            </RelativeLayout>
-        </android.gesture.GestureOverlayView>
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/today_goal_cb"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="21dp"
+            android:text="@string/today_s_goal"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
     </RelativeLayout>
+
+    <android.view.ext.SatelliteMenu
+        android:id="@+id/menu"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="bottom|right" 
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true" />
 
 </RelativeLayout>

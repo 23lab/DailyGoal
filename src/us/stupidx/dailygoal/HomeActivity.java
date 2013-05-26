@@ -1,7 +1,9 @@
 package us.stupidx.dailygoal;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import us.stupidx.config.Config;
@@ -18,12 +20,17 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
-import android.gesture.GestureOverlayView;
 import android.os.Bundle;
+import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ext.IDegreeProvider;
+import android.view.ext.SatelliteMenu;
+import android.view.ext.SatelliteMenu.SateliteClickedListener;
+import android.view.ext.SatelliteMenuItem;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -39,8 +46,8 @@ public class HomeActivity extends Activity {
 	private char[] week = { '日', '一', '二', '三', '四', '五', '六' };
 	private Button archiveBtn;
 	private Button settingBtn;
-	private GestureOverlayView gestures;
 	protected View dlgView;
+	private SatelliteMenu menu;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +59,7 @@ public class HomeActivity extends Activity {
 		this.findViewById();
 		this.setListener();
 
+		this.createSatelliteMenu();
 		// 设置闹铃
 		this.setAlarmTime(this, 1000);
 
@@ -69,8 +77,6 @@ public class HomeActivity extends Activity {
 			cbTodayGoal.setEnabled(false);
 		}
 
-		gestures.setGestureVisible(false);
-		
 		Cursor cursor = openHelper.readCurrentGoal();
 		if (cursor.getCount() == 1) {
 			cursor.moveToFirst();
@@ -83,10 +89,61 @@ public class HomeActivity extends Activity {
 			}
 			cbTodayGoal.setText(ctn);
 		}
-		
+
 		if (openHelper.readCurrentGoal().getCount() == 0) { // 如果没有设置目标, 则弹出添加对话框
 			popAddGoalDlg();
 		}
+
+	}
+
+	private void createSatelliteMenu() {
+		menu = (SatelliteMenu) findViewById(R.id.menu);
+		float distance = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 170, getResources()
+				.getDisplayMetrics());
+		menu.setSatelliteDistance((int) distance);
+		menu.setExpandDuration(500);
+		menu.setCloseItemsOnClick(true);
+		menu.setTotalSpacingDegree(70);
+		menu.setAnimationCacheEnabled(false);
+		menu.setGapDegreeProvider(new IDegreeProvider() {
+			@Override
+			public float[] getDegrees(int count, float totalDegrees) {
+				float[] degrees = new float[count];
+				for (int i = 0; i < count; i++) {
+					degrees[i] = 90 + (90 - totalDegrees) / 2 + totalDegrees / (count - 1) * i;
+				}
+				return degrees;
+			}
+		});
+		// menu.setSoundEffectsEnabled(true);
+
+		List<SatelliteMenuItem> items = new ArrayList<SatelliteMenuItem>();
+		items.add(new SatelliteMenuItem(3, R.drawable.ic_5));
+		items.add(new SatelliteMenuItem(2, R.drawable.ic_6));
+		items.add(new SatelliteMenuItem(1, R.drawable.ic_2));
+		menu.addItems(items);
+		menu.setOnItemClickedListener(new SateliteClickedListener() {
+			public void eventOccured(int id) {
+				Log.i("sat", "Clicked on " + id);
+				switch (id) {
+				case 1:
+					HomeActivity.this.startActivity(new Intent(HomeActivity.this,
+							ArchiveActivity.class));
+					HomeActivity.this.overridePendingTransition(R.anim.push_right_in,
+							R.anim.push_right_out);
+					break;
+				case 2:
+					popAddGoalDlg();
+					break;
+				case 3:
+					HomeActivity.this.startActivity(new Intent(HomeActivity.this,
+							SettingsActivity.class));
+					HomeActivity.this.overridePendingTransition(R.anim.push_left_in,
+							R.anim.push_left_out);
+					break;
+				}
+			}
+		});
 	}
 
 	private void chenckInitConfig() {
@@ -104,10 +161,9 @@ public class HomeActivity extends Activity {
 	private void findViewById() {
 		settingBtn = (Button) findViewById(R.id.setting_btn);
 		archiveBtn = (Button) findViewById(R.id.archive_btn);
-		gestures = (GestureOverlayView) findViewById(R.id.home_guesture_view);
 		cbTodayGoal = (CheckBox) findViewById(R.id.today_goal_cb);
 	}
-	
+
 	private void setListener() {
 		settingBtn.setOnClickListener(new OnClickListener() {
 			@Override
@@ -141,8 +197,6 @@ public class HomeActivity extends Activity {
 			}
 		});
 
-		gestures.addOnGestureListener(new NavGestureListener(this, ArchiveActivity.class,
-				SettingsActivity.class));
 	}
 
 	private void setAlarmTime(Context context, long timeInMillis) {
@@ -169,7 +223,7 @@ public class HomeActivity extends Activity {
 						openHelper.insertCurrentGoal(goalTxt);
 					}
 				}
-				
+
 				HomeActivity.this.renderHomeView();
 			}
 		});
@@ -182,7 +236,6 @@ public class HomeActivity extends Activity {
 		AlertDialog dialog = builder.create();
 		dialog.show();
 	}
-	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -194,13 +247,20 @@ public class HomeActivity extends Activity {
 	@Override
 	protected void onPause() {
 		super.onPause();
-		openHelper.close();
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
-		openHelper = new GoalOpenHelper(this);
 		this.renderHomeView();
 	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		if (openHelper != null) {
+			openHelper.close();
+		}
+	}
+
 }

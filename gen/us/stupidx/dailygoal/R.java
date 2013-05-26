@@ -13,6 +13,14 @@ public final class R {
         public static final int push_left_out=0x7f040001;
         public static final int push_right_in=0x7f040002;
         public static final int push_right_out=0x7f040003;
+        public static final int sat_item_anim_click=0x7f040004;
+        public static final int sat_item_anticipate_interpolator=0x7f040005;
+        public static final int sat_item_click_interpolator=0x7f040006;
+        public static final int sat_item_in_rotate_interpolator=0x7f040007;
+        public static final int sat_item_out_rotate_interpolator=0x7f040008;
+        public static final int sat_item_overshoot_interpolator=0x7f040009;
+        public static final int sat_main_rotate_left=0x7f04000a;
+        public static final int sat_main_rotate_right=0x7f04000b;
     }
     public static final class attr {
         /** 
@@ -47,6 +55,14 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
         public static final int buttonBarStyle=0x7f01000c;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int closeOnClick=0x7f010010;
         /**  The maximum number of columns to create when automatically positioning children. 
          <p>Must be an integer value, such as "<code>100</code>".
 <p>This may also be a reference to a resource (in the form
@@ -70,6 +86,14 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int columnOrderPreserved=0x7f010006;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int expandDuration=0x7f01000f;
         /** 
         The column boundary delimiting the left of the group of cells
         occupied by this view.
@@ -161,6 +185,10 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int layout_rowSpan=0x7f010008;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int mainImage=0x7f010013;
         /** 
               support versions. All attributes not present in ViewGroup/View are
               redefined in the support library namespace.
@@ -209,10 +237,28 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int rowOrderPreserved=0x7f010005;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int satelliteDistance=0x7f010012;
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
         public static final int timePickerStyle=0x7f01000e;
+        /** <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int totalSpacingDegree=0x7f010011;
         /** 
         When set to true, tells GridLayout to use default margins when none are specified
         in a view's layout parameters.
@@ -249,29 +295,38 @@ containing a value of this type.
         public static final int button_hover=0x7f020000;
         public static final int dg_icon=0x7f020001;
         public static final int done=0x7f020002;
-        public static final int ic_launcher=0x7f020003;
-        public static final int picker_bottom=0x7f020004;
-        public static final int picker_middle=0x7f020005;
-        public static final int picker_top=0x7f020006;
-        public static final int ret_left=0x7f020007;
-        public static final int ret_right=0x7f020008;
-        public static final int return_left=0x7f020009;
-        public static final int return_left_btn=0x7f02000a;
-        public static final int return_right_btn=0x7f02000b;
-        public static final int splash=0x7f02000c;
-        public static final int tianping=0x7f02000d;
+        public static final int ic_1=0x7f020003;
+        public static final int ic_2=0x7f020004;
+        public static final int ic_3=0x7f020005;
+        public static final int ic_4=0x7f020006;
+        public static final int ic_5=0x7f020007;
+        public static final int ic_6=0x7f020008;
+        public static final int ic_launcher=0x7f020009;
+        public static final int main=0x7f02000a;
+        public static final int picker_bottom=0x7f02000b;
+        public static final int picker_middle=0x7f02000c;
+        public static final int picker_top=0x7f02000d;
+        public static final int ret_left=0x7f02000e;
+        public static final int ret_right=0x7f02000f;
+        public static final int return_left=0x7f020010;
+        public static final int return_left_btn=0x7f020011;
+        public static final int return_right_btn=0x7f020012;
+        public static final int sat_item=0x7f020013;
+        public static final int sat_main=0x7f020014;
+        public static final int splash=0x7f020015;
+        public static final int tianping=0x7f020016;
     }
     public static final class id {
         public static final int RelativeLayout1=0x7f06001a;
         public static final int TableLayout1=0x7f060026;
-        public static final int action_settings=0x7f06003d;
+        public static final int action_settings=0x7f06003f;
         public static final int add_goal_layout=0x7f060012;
         public static final int afternoon_time=0x7f06002a;
         public static final int alignBounds=0x7f060002;
         public static final int alignMargins=0x7f060003;
-        public static final int amPm=0x7f060030;
-        public static final int am_pm=0x7f060039;
-        public static final int analogClock1=0x7f06001e;
+        public static final int amPm=0x7f060032;
+        public static final int am_pm=0x7f06003b;
+        public static final int analogClock1=0x7f06001d;
         public static final int archive_btn=0x7f06001c;
         public static final int archive_gesture_ov=0x7f060014;
         public static final int archive_return_btn=0x7f060016;
@@ -290,40 +345,42 @@ containing a value of this type.
         public static final int goal_list=0x7f060015;
         public static final int goal_list_item_ctn=0x01010000;
         public static final int goal_list_item_date=0x01010001;
-        public static final int home_guesture_view=0x7f06001d;
         public static final int horizontal=0x7f060000;
-        public static final int hour=0x7f06002e;
-        public static final int hour_container=0x7f060031;
-        public static final int hour_display=0x7f060033;
-        public static final int hour_minus=0x7f060034;
-        public static final int hour_plus=0x7f060032;
+        public static final int hour=0x7f060030;
+        public static final int hour_container=0x7f060033;
+        public static final int hour_display=0x7f060035;
+        public static final int hour_minus=0x7f060036;
+        public static final int hour_plus=0x7f060034;
         public static final int hw_view=0x7f060017;
         public static final int imageView1=0x7f06002d;
         public static final int layout_home=0x7f060019;
         public static final int left=0x7f060006;
-        public static final int min_container=0x7f060035;
-        public static final int min_display=0x7f060037;
-        public static final int min_minus=0x7f060038;
-        public static final int min_plus=0x7f060036;
-        public static final int minute=0x7f06002f;
+        public static final int menu=0x7f060022;
+        public static final int min_container=0x7f060037;
+        public static final int min_display=0x7f060039;
+        public static final int min_minus=0x7f06003a;
+        public static final int min_plus=0x7f060038;
+        public static final int minute=0x7f060031;
         public static final int morning_time=0x7f060028;
         public static final int nav_bar_layout=0x7f060013;
-        public static final int play_button=0x7f06003b;
+        public static final int play_button=0x7f06003d;
         public static final int right=0x7f060007;
+        public static final int sat_item=0x7f06002e;
+        public static final int sat_main=0x7f06002f;
         public static final int save_layout=0x7f060024;
         public static final int save_setting=0x7f06002b;
         public static final int setting_btn=0x7f06001b;
         public static final int setting_gesture_ov=0x7f060025;
         public static final int setting_rtn_btn=0x7f060023;
-        public static final int skip_button=0x7f06003c;
-        public static final int song_info=0x7f06003a;
+        public static final int skip_button=0x7f06003e;
+        public static final int song_info=0x7f06003c;
         public static final int start=0x7f060010;
         public static final int textView1=0x7f060027;
         public static final int textView2=0x7f060029;
-        public static final int textView3=0x7f060022;
-        public static final int today_date_tv=0x7f06001f;
-        public static final int today_day_tv=0x7f060020;
-        public static final int today_goal_cb=0x7f060021;
+        public static final int textView3=0x7f060021;
+        public static final int today_date_tv=0x7f06001e;
+        public static final int today_day_tv=0x7f06001f;
+        public static final int today_goal_cb=0x7f060020;
         public static final int top=0x7f060004;
         public static final int vertical=0x7f060001;
     }
@@ -336,9 +393,12 @@ containing a value of this type.
         public static final int activity_start=0x7f030005;
         public static final int dlg_add_goal=0x7f030006;
         public static final int goal_list_item=0x7f030007;
-        public static final int time_picker=0x7f030008;
-        public static final int timepicker=0x7f030009;
-        public static final int widget=0x7f03000a;
+        public static final int main=0x7f030008;
+        public static final int sat_item_cr=0x7f030009;
+        public static final int sat_main=0x7f03000a;
+        public static final int time_picker=0x7f03000b;
+        public static final int timepicker=0x7f03000c;
+        public static final int widget=0x7f03000d;
     }
     public static final class menu {
         public static final int archive=0x7f0b0000;
@@ -349,25 +409,26 @@ containing a value of this type.
         public static final int start=0x7f0b0005;
     }
     public static final class string {
-        public static final int action_settings=0x7f090001;
-        public static final int app_name=0x7f090000;
-        public static final int ask_user_review=0x7f090010;
-        public static final int ask_user_to_set_goal=0x7f09000e;
-        public static final int cancel=0x7f090012;
-        public static final int do_it=0x7f090005;
-        public static final int dummy_button=0x7f090008;
-        public static final int dummy_content=0x7f090009;
-        public static final int hello_world=0x7f090002;
-        public static final int is_goal_finish=0x7f09000f;
-        public static final int no_goal_today=0x7f09000d;
-        public static final int ok=0x7f090011;
-        public static final int title_activity_archive=0x7f09000a;
-        public static final int title_activity_goal_add=0x7f090003;
-        public static final int title_activity_home=0x7f090007;
-        public static final int title_activity_settings=0x7f09000b;
-        public static final int title_activity_start=0x7f090006;
-        public static final int today_s_goal=0x7f09000c;
-        public static final int today_to_do=0x7f090004;
+        public static final int action_settings=0x7f090002;
+        public static final int app_name=0x7f090001;
+        public static final int ask_user_review=0x7f090011;
+        public static final int ask_user_to_set_goal=0x7f09000f;
+        public static final int cancel=0x7f090013;
+        public static final int do_it=0x7f090006;
+        public static final int dummy_button=0x7f090009;
+        public static final int dummy_content=0x7f09000a;
+        public static final int empty=0x7f090000;
+        public static final int hello_world=0x7f090003;
+        public static final int is_goal_finish=0x7f090010;
+        public static final int no_goal_today=0x7f09000e;
+        public static final int ok=0x7f090012;
+        public static final int title_activity_archive=0x7f09000b;
+        public static final int title_activity_goal_add=0x7f090004;
+        public static final int title_activity_home=0x7f090008;
+        public static final int title_activity_settings=0x7f09000c;
+        public static final int title_activity_start=0x7f090007;
+        public static final int today_s_goal=0x7f09000d;
+        public static final int today_to_do=0x7f090005;
     }
     public static final class style {
         /** 
@@ -906,5 +967,95 @@ containing a value of this type.
           @attr name android:layout_rowSpan
         */
         public static final int GridLayout_Layout_layout_rowSpan = 8;
+        /** Attributes that can be used with a SatelliteMenu.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #SatelliteMenu_closeOnClick us.stupidx.dailygoal:closeOnClick}</code></td><td></td></tr>
+           <tr><td><code>{@link #SatelliteMenu_expandDuration us.stupidx.dailygoal:expandDuration}</code></td><td></td></tr>
+           <tr><td><code>{@link #SatelliteMenu_mainImage us.stupidx.dailygoal:mainImage}</code></td><td></td></tr>
+           <tr><td><code>{@link #SatelliteMenu_satelliteDistance us.stupidx.dailygoal:satelliteDistance}</code></td><td></td></tr>
+           <tr><td><code>{@link #SatelliteMenu_totalSpacingDegree us.stupidx.dailygoal:totalSpacingDegree}</code></td><td></td></tr>
+           </table>
+           @see #SatelliteMenu_closeOnClick
+           @see #SatelliteMenu_expandDuration
+           @see #SatelliteMenu_mainImage
+           @see #SatelliteMenu_satelliteDistance
+           @see #SatelliteMenu_totalSpacingDegree
+         */
+        public static final int[] SatelliteMenu = {
+            0x7f01000f, 0x7f010010, 0x7f010011, 0x7f010012,
+            0x7f010013
+        };
+        /**
+          <p>This symbol is the offset where the {@link us.stupidx.dailygoal.R.attr#closeOnClick}
+          attribute's value can be found in the {@link #SatelliteMenu} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:closeOnClick
+        */
+        public static final int SatelliteMenu_closeOnClick = 1;
+        /**
+          <p>This symbol is the offset where the {@link us.stupidx.dailygoal.R.attr#expandDuration}
+          attribute's value can be found in the {@link #SatelliteMenu} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:expandDuration
+        */
+        public static final int SatelliteMenu_expandDuration = 0;
+        /**
+          <p>This symbol is the offset where the {@link us.stupidx.dailygoal.R.attr#mainImage}
+          attribute's value can be found in the {@link #SatelliteMenu} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:mainImage
+        */
+        public static final int SatelliteMenu_mainImage = 4;
+        /**
+          <p>This symbol is the offset where the {@link us.stupidx.dailygoal.R.attr#satelliteDistance}
+          attribute's value can be found in the {@link #SatelliteMenu} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:satelliteDistance
+        */
+        public static final int SatelliteMenu_satelliteDistance = 3;
+        /**
+          <p>This symbol is the offset where the {@link us.stupidx.dailygoal.R.attr#totalSpacingDegree}
+          attribute's value can be found in the {@link #SatelliteMenu} array.
+
+
+          <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:totalSpacingDegree
+        */
+        public static final int SatelliteMenu_totalSpacingDegree = 2;
     };
 }
