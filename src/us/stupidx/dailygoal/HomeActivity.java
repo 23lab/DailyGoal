@@ -104,23 +104,13 @@ public class HomeActivity extends Activity {
 		menu.setExpandDuration(500);
 		menu.setCloseItemsOnClick(true);
 		menu.setTotalSpacingDegree(70);
-		menu.setAnimationCacheEnabled(false);
-		menu.setGapDegreeProvider(new IDegreeProvider() {
-			@Override
-			public float[] getDegrees(int count, float totalDegrees) {
-				float[] degrees = new float[count];
-				for (int i = 0; i < count; i++) {
-					degrees[i] = 90 + (90 - totalDegrees) / 2 + totalDegrees / (count - 1) * i;
-				}
-				return degrees;
-			}
-		});
+		
 		// menu.setSoundEffectsEnabled(true);
 
 		List<SatelliteMenuItem> items = new ArrayList<SatelliteMenuItem>();
-		items.add(new SatelliteMenuItem(3, R.drawable.ic_5));
-		items.add(new SatelliteMenuItem(2, R.drawable.ic_6));
-		items.add(new SatelliteMenuItem(1, R.drawable.ic_2));
+		items.add(new SatelliteMenuItem(3, R.drawable.setting));
+		items.add(new SatelliteMenuItem(2, R.drawable.add_goal));
+		items.add(new SatelliteMenuItem(1, R.drawable.achieve));
 		menu.addItems(items);
 		menu.setOnItemClickedListener(new SateliteClickedListener() {
 			public void eventOccured(int id) {
