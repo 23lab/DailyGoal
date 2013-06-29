@@ -91,6 +91,7 @@ public class GoalOpenHelper extends SQLiteOpenHelper {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
 		Date today = new Date();
+
 		SQLiteDatabase db = this.db = this.getWritableDatabase();
 		ContentValues values = new ContentValues();
 		values.put(DailyGoal_tbl.GoalColumn.COL_DATE, sdf.format(today));

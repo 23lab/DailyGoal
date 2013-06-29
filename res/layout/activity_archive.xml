@@ -14,6 +14,7 @@
         android:layout_above="@+id/add_goal_layout"
         android:layout_below="@+id/nav_bar_layout" >
 
+        <!--
         <android.gesture.GestureOverlayView
             android:id="@+id/archive_gesture_ov"
             android:layout_width="fill_parent"
@@ -29,45 +30,14 @@
                 android:layout_height="match_parent" >
             </ListView>
         </android.gesture.GestureOverlayView>
+        -->
+
+        <com.squareup.timessquare.CalendarPickerView
+            android:id="@+id/calendar_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
     </RelativeLayout>
-    <!--
-    <RelativeLayout
-        android:id="@+id/add_goal_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true" >
-
-        <RelativeLayout
-            android:id="@+id/dummyView"
-            android:layout_width="0dip"
-            android:layout_height="0dip"
-            android:focusable="true"
-            android:focusableInTouchMode="true" />
-
-        <EditText
-            android:id="@+id/goal_content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@+id/add_goal_btn"
-            android:ems="10"
-            android:gravity="center_vertical"
-            android:hint="@string/today_to_do"
-            android:inputType="textMultiLine"
-            android:lines="1"
-            android:maxLines="1"
-            android:minLines="1" />
-
-        <Button
-            android:id="@+id/add_goal_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:text="+" />
-    </RelativeLayout>    -->
 
     <RelativeLayout
         android:id="@+id/nav_bar_layout"
